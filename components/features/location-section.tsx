@@ -1,0 +1,77 @@
+import Image from 'next/image'
+import { ScrollReveal } from './scroll-reveal'
+
+const STATS = [
+  { key: '1 min', value: 'Walk to the village bus stop (line 4242, every 30 min).' },
+  { key: '5 min', value: 'Bus ride to the St. Anton Galzigbahn gondola.' },
+  { key: '1 hr', value: 'By car or train from Innsbruck airport (INN).' },
+]
+
+export function LocationSection() {
+  return (
+    <section id="location" className="bg-canvas px-[22px] py-[88px]">
+      <div className="max-w-[980px] mx-auto">
+        <ScrollReveal>
+          <h2 className="type-section text-center mb-[14px]">
+            Schnann. Easy to reach. Hard to leave.
+          </h2>
+          <p
+            className="type-sub text-center max-w-[640px] mx-auto mb-14"
+            style={{ color: 'rgba(0,0,0,0.80)' }}
+          >
+            A single-street village in the Stanzertal. Five minutes by bus to St. Anton.
+            One hour by car from Innsbruck airport.
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal className="mb-4">
+          <div className="relative overflow-hidden rounded-[8px]" style={{ aspectRatio: '16/9' }}>
+            <Image
+              src="/schnann-winter.webp"
+              alt="Schnann and Pettneu in winter"
+              fill
+              className="object-cover"
+              sizes="(max-width: 980px) 100vw, 980px"
+            />
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal className="mb-10">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="relative overflow-hidden rounded-[8px]" style={{ aspectRatio: '4/3' }}>
+              <Image
+                src="/schnann-sommer.webp"
+                alt="Schnann village in summer"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 50vw, 490px"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-[8px]" style={{ aspectRatio: '4/3' }}>
+              <Image
+                src="/schnann-gorge.jpg"
+                alt="Mountain gorge near Schnann"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 640px) 50vw, 490px"
+              />
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {STATS.map((stat, i) => (
+            <ScrollReveal key={stat.key} delay={i * 0.07}>
+              <div className="bg-white rounded-[8px] p-6">
+                <div className="type-section m-0">{stat.key}</div>
+                <p className="type-body mt-[10px] mb-0" style={{ color: 'rgba(0,0,0,0.80)' }}>
+                  {stat.value}
+                </p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
