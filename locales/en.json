@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "homeTitle": "Alpzeit · Apartments on the Arlberg in Schnann",
+    "homeDescription": "Three apartments on the quiet side of the Arlberg. Ten minutes from the Galzigbahn, an hour from Innsbruck airport. Book direct.",
+    "ogLocale": "en_GB"
+  },
+  "nav": {
+    "menu": "Menu",
+    "apartments": "Apartments",
+    "schnann": "Schnann",
+    "arlberg": "Arlberg",
+    "journal": "Journal",
+    "checkAvailability": "Check availability",
+    "langLabel": "en"
+  },
+  "langToggle": {
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "hero": {
+    "headline1": "Close to the Arlberg.",
+    "headline2": "Far from the",
+    "headlineAccent": "noise",
+    "headlinePunct": ".",
+    "cta": "Discover the apartments"
+  },
+  "about": {
+    "label": "● About us",
+    "body": "Three apartments on the quiet side of the Arlberg. Alpzeit is a small family house in Schnann, ten minutes from the Galzigbahn but a world away from the crowds. We rent it the way we'd want to stay ourselves — unhurried, understated, and always with the mountains in view.",
+    "link": "Know more →"
+  },
+  "stats": {
+    "label": "● By the numbers",
+    "items": [
+      {
+        "suffix": "min",
+        "label": "To the Galzigbahn",
+        "description": "Just ten minutes from the Arlberg's main cable car — close enough for first tracks, far enough for real quiet in the evening."
+      },
+      {
+        "suffix": "hr",
+        "label": "From Innsbruck airport",
+        "description": "A single drive through the Inn valley. No transfers, no detours."
+      },
+      {
+        "suffix": "+",
+        "label": "Days of snow per year",
+        "description": "One of the most reliable snow regions in the Alps."
+      }
+    ]
+  },
+  "houses": {
+    "label": "(Apartments)",
+    "heading": "Three apartments, one address",
+    "sleeps": "Sleeps {{n}}",
+    "bedrooms": "{{n}} bedrooms",
+    "bedroom": "{{n}} bedroom",
+    "fromPrice": "From €{{price}} / night",
+    "inclNote": "Cleaning, linen & tourist tax included",
+    "viewAlt": "View {{name}}"
+  },
+  "atmosphere": {
+    "eyebrow": "Discover the surroundings",
+    "heading": "Schnann, slowly.",
+    "playLabel": "Play video",
+    "closeLabel": "Close video"
+  },
+  "location": {
+    "heading": "Schnann. Easy to reach. Hard to leave.",
+    "sub": "A single-street village in the Stanzertal. Five minutes by bus to St. Anton. One hour by car from Innsbruck airport.",
+    "stats": [
+      { "key": "1 min", "value": "Walk to the village bus stop (line 4242, every 30 min)." },
+      { "key": "5 min", "value": "Bus ride to the St. Anton Galzigbahn gondola." },
+      { "key": "1 hr", "value": "By car or train from Innsbruck airport (INN)." }
+    ]
+  },
+  "arlberg": {
+    "heading": "The Arlberg, from the doorstep.",
+    "sub": "305 km of pistes. 88 lifts. Ski-in on the bus; ski back to the apartment door by 16:30.",
+    "skiSeason": "Ski season dates",
+    "summerHiking": "Summer hiking"
+  },
+  "reviews": {
+    "eyebrow": "Guest notes",
+    "heading": "In their own words"
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "heading": "Frequently asked",
+    "items": [
+      {
+        "q": "How far is Alpzeit from the ski lifts?",
+        "a": "The Galzigbahn — the main cable car into the St. Anton ski area — is a ten-minute drive from Schnann. During the ski season, a free ski bus stops in the village several times a day."
+      },
+      {
+        "q": "Is direct booking better than booking through an agency?",
+        "a": "Yes. When you book directly you pay no agency commission, which means a lower rate for the same apartment. You also deal with us directly for any questions or requests."
+      },
+      {
+        "q": "What does the price include?",
+        "a": "The nightly rate includes final cleaning, bed linen and towels, and Austrian tourist tax. There are no hidden fees."
+      },
+      {
+        "q": "Can we arrive in summer, not just winter?",
+        "a": "Absolutely. Schnann and the Stanzertal valley are beautiful year-round. Summer brings hiking, mountain biking, and the Verwallsee lake. Several guests return specifically for the quieter summer season."
+      },
+      {
+        "q": "What is the minimum stay?",
+        "a": "During peak ski season (Christmas–New Year and February school holidays) the minimum stay is seven nights. All other periods are flexible — from three nights."
+      },
+      {
+        "q": "Is there parking at the property?",
+        "a": "Yes, each apartment has a dedicated parking space. In winter the parking area is regularly cleared of snow."
+      },
+      {
+        "q": "What is the cancellation policy?",
+        "a": "Cancellations up to 30 days before arrival are fully refunded. Between 30 and 14 days, 50% is refunded. Inside 14 days the full amount is charged. We recommend travel insurance for peace of mind."
+      },
+      {
+        "q": "Can we bring a dog?",
+        "a": "Well-behaved dogs are welcome in the Lodge and the Hearth with prior notice. A small cleaning supplement applies. Please mention this when you enquire."
+      }
+    ]
+  },
+  "journal": {
+    "heading": "From the journal",
+    "readMore": "Read →",
+    "posts": [
+      { "id": "pack-february", "title": "What to pack in February" },
+      { "id": "quiet-season", "title": "The quiet season, mid-April" },
+      { "id": "week-stanzertal", "title": "A week in the Stanzertal" }
+    ]
+  },
+  "footer": {
+    "bookDirect": "Book direct",
+    "bestRate": "The best rate is always here.",
+    "bookDirectSub": "Book directly with us — no agency, no commission, no markup.",
+    "checkAvailability": "Check availability",
+    "newsletter": {
+      "heading": "Seasonal updates and quiet weeks",
+      "note": "Occasional letters. No marketing.",
+      "placeholder": "your@email.com",
+      "subscribe": "Subscribe",
+      "thanks": "Thank you — we'll be in touch."
+    },
+    "cols": {
+      "apartments": "Apartments",
+      "location": "Location",
+      "stay": "Stay",
+      "alpzeit": "Alpzeit"
+    },
+    "links": {
+      "lodge": "The Lodge",
+      "hearth": "The Hearth",
+      "eyrie": "The Eyrie",
+      "schnann": "Schnann",
+      "arlberg": "Arlberg",
+      "innsbruck": "Innsbruck arrival",
+      "houseRules": "House rules",
+      "arrival": "Arrival & keys",
+      "seasonality": "Seasonality",
+      "journal": "Journal",
+      "contact": "Contact",
+      "privacy": "Privacy & GDPR"
+    },
+    "trust": {
+      "registration": "Registered vacation rental · Vorarlberg, Austria",
+      "cancellation": "Cancellation policy",
+      "privacy": "Privacy & GDPR"
+    },
+    "copyright": "© 2026 HAUS ALPZEIT · SCHNANN 41, 6574 PETTNEU AM ARLBERG, AUSTRIA · HELLO@ALPZEIT.AT"
+  },
+  "booking": {
+    "title": "Check availability",
+    "arrive": "Arrive",
+    "depart": "Depart",
+    "guests": "Guests",
+    "search": "Search",
+    "changeDates": "← Change dates",
+    "sleeps": "Sleeps {{n}}",
+    "noMatch": "No apartment sleeps {{n}}. Reduce the guest count or contact us.",
+    "held": "Held for 10 minutes.",
+    "emailConfirm": "We'll email confirmation within the hour.",
+    "done": "Done",
+    "guestSingular": "guest",
+    "guestPlural": "guests"
+  },
+  "apartmentPage": {
+    "label": "Apartment",
+    "aboutLabel": "● About this apartment",
+    "photosLabel": "● Photos",
+    "amenitiesLabel": "● What's inside",
+    "backLink": "← Back to all apartments",
+    "instantConfirm": "Instant confirmation. No booking fees.",
+    "arriveLabel": "Arrive",
+    "departLabel": "Depart",
+    "guestsLabel": "Guests",
+    "photoAlt": "Photo {{n}}",
+    "amenities": [
+      "Fully equipped kitchen",
+      "Wood-burning stove",
+      "Wi-Fi throughout",
+      "Washer and dryer",
+      "South-facing balcony",
+      "Ski storage with boot warmers",
+      "Private parking (2 spots)",
+      "Bed linen and towels included"
+    ],
+    "longDescriptions": {
+      "lodge": [
+        "Spread across two floors, The Lodge is the largest of the three apartments. The kitchen opens onto a long wooden dining table that comfortably seats twelve, with two separate sitting rooms for quiet evenings and louder ones.",
+        "Five bedrooms share three bathrooms. A wood-burning stove in the main living room, large south-facing windows onto the mountains, and a private entrance from the side of the house.",
+        "[Placeholder — to be filled in by the owner.]"
+      ],
+      "hearth": [
+        "The Hearth is a two-floor apartment of wood and stone. An open kitchen with a central island, three bedrooms, and a south-facing balcony that gets the afternoon sun.",
+        "Designed for a family or two couples. The living room has a wood-burning stove and direct access to the terrace, with views across the valley.",
+        "[Placeholder — to be filled in by the owner.]"
+      ],
+      "eyrie": [
+        "The Eyrie sits at the top of the building — a top-floor studio with a skylight over the bed. In clear weather, the Arlberg peaks line up through it.",
+        "A quiet space for one or two people. Small but thoughtfully arranged, with a fully equipped kitchenette, a fold-out desk, and more light than the floor plan suggests.",
+        "[Placeholder — to be filled in by the owner.]"
+      ]
+    },
+    "apartmentDescriptions": {
+      "lodge": "The largest of the three. Generous kitchen, two sitting rooms, a long wooden table that seats all twelve.",
+      "hearth": "Two floors of wood and stone. Open kitchen, three bedrooms, the balcony faces south.",
+      "eyrie": "A top-floor studio. Skylight over the bed; in clear weather, the Arlberg peaks line up through it."
+    },
+    "specsArea": "{{n}} m²",
+    "specsBeds": "{{n}} bedrooms",
+    "specsBed": "{{n}} bedroom",
+    "specsSleeps": "Sleeps {{n}}",
+    "specsPrice": "From €{{price}} / night"
+  },
+  "stickyCta": {
+    "checkAvailability": "Check availability"
+  },
+  "sidebar": {
+    "checkAvailability": "Check availability",
+    "arriveLabel": "Arrive",
+    "departLabel": "Depart",
+    "selectDate": "Select date",
+    "guestsLabel": "Guests",
+    "guestSingular": "guest",
+    "guestPlural": "guests",
+    "confirm": "Instant confirmation. No booking fees."
+  }
+}

@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { useBooking } from './booking-provider'
+import { useLocale } from '@/lib/locale-context'
 
 export function StickyCta() {
   const [visible, setVisible] = useState(false)
   const { open: openBooking } = useBooking()
+  const { t } = useLocale()
 
   useEffect(() => {
     const onScroll = () => {
@@ -59,7 +61,7 @@ export function StickyCta() {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
-          Check availability
+          {t('stickyCta.checkAvailability')}
         </button>
       </div>
 
@@ -102,7 +104,7 @@ export function StickyCta() {
             cursor: 'pointer',
           }}
         >
-          Check availability
+          {t('stickyCta.checkAvailability')}
         </button>
       </div>
     </>

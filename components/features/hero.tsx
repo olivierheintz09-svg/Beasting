@@ -1,19 +1,14 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useBooking } from './booking-provider'
+import { useLocale } from '@/lib/locale-context'
 
 gsap.registerPlugin(useGSAP)
-
-const NAV_LINKS = [
-  { href: '#apartments', label: 'Apartments' },
-  { href: '#location', label: 'Schnann' },
-  { href: '#arlberg', label: 'Arlberg' },
-  { href: '#journal', label: 'Journal' },
-]
 
 // ── Icons ──────────────────────────────────────────────────────────────────
 
@@ -117,6 +112,105 @@ const glassAt = (scrolled: boolean) => ({
   transition: 'background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
 })
 
+// ── Language switcher ──────────────────────────────────────────────────────
+
+function LangSwitcher() {
+  const { lang, t } = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+  const [hovered, setHovered] = useState<string | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onPointerDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [])
+
+  const switchTo = (target: string) => {
+    setOpen(false)
+    document.cookie = `NEXT_LOCALE=${target}; path=/; max-age=31536000; SameSite=Lax`
+    const parts = pathname.split('/')
+    parts[1] = target
+    router.push(parts.join('/'))
+  }
+
+  const otherLang = lang === 'de' ? 'en' : 'de'
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-[6px] px-3 text-white type-caption hover:opacity-70 transition-opacity cursor-pointer border-none bg-transparent"
+      >
+        {t('nav.langLabel')} <ChevronDown />
+      </button>
+
+      {/* Dropdown */}
+      <div
+        aria-hidden={!open}
+        style={{
+          position: 'absolute',
+          top: 'calc(100% + 10px)',
+          left: '50%',
+          transform: open ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-6px)',
+          width: 130,
+          zIndex: 40,
+          borderRadius: 14,
+          overflow: 'hidden',
+          background: 'rgba(255,255,255,0.12)',
+          backdropFilter: 'blur(28px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(180%)',
+          border: '1px solid rgba(255,255,255,0.22)',
+          boxShadow: [
+            'inset 0 1.5px 1px 0 rgba(255,255,255,0.40)',
+            'inset 0 -1px 1px 0 rgba(255,255,255,0.12)',
+            '0 12px 36px rgba(0,0,0,0.18)',
+          ].join(', '),
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? 'auto' : 'none',
+          transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
+        }}
+      >
+        {(['de', 'en'] as const).map((l, i) => (
+          <button
+            key={l}
+            onClick={() => switchTo(l)}
+            onMouseEnter={() => setHovered(l)}
+            onMouseLeave={() => setHovered(null)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '12px 16px',
+              background: hovered === l ? 'rgba(255,255,255,0.10)' : 'transparent',
+              border: 'none',
+              borderBottom: i === 0 ? '1px solid rgba(255,255,255,0.10)' : 'none',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans)',
+              fontSize: 13,
+              color: l === lang ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.72)',
+              fontWeight: l === lang ? 500 : 400,
+              letterSpacing: '0.01em',
+              transition: 'background 0.15s ease, color 0.15s ease',
+              textAlign: 'left',
+            }}
+          >
+            {t(`langToggle.${l}`)}
+            {l === lang && (
+              <span style={{ fontSize: 10, color: '#836953', fontWeight: 600 }}>✓</span>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ── Component ──────────────────────────────────────────────────────────────
 
 export default function Hero() {
@@ -126,6 +220,14 @@ export default function Hero() {
   const [scrolled, setScrolled] = useState(false)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const { open: openBooking } = useBooking()
+  const { lang, t } = useLocale()
+
+  const NAV_LINKS = [
+    { href: `/${lang}/#apartments`, label: t('nav.apartments') },
+    { href: `/${lang}/#location`, label: t('nav.schnann') },
+    { href: `/${lang}/#arlberg`, label: t('nav.arlberg') },
+    { href: `/${lang}/#journal`, label: t('nav.journal') },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -183,7 +285,7 @@ export default function Hero() {
       {/* Dark overlay */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(0,0,0,0.30)' }} />
 
-      {/* White fade — bottom 50%, sits above image+overlay, below text */}
+      {/* White fade — bottom 50% */}
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
@@ -196,7 +298,7 @@ export default function Hero() {
       {/* ── NAV OVERLAY ───────────────────────────────────────────────────── */}
       <nav ref={navRef} className="absolute top-0 left-0 right-0 z-20" aria-label="Site navigation">
 
-        {/* Full-width glass bar — intensity driven by scroll state */}
+        {/* Full-width glass bar */}
         <div className="hero-nav-inner flex items-center px-6 py-[18px] relative" style={glassAt(scrolled)}>
 
           {/* LEFT — desktop items */}
@@ -205,18 +307,16 @@ export default function Hero() {
               onClick={() => setMenuOpen(v => !v)}
               className="flex items-center gap-[9px] px-4 text-white type-caption hover:opacity-70 transition-opacity cursor-pointer border-none bg-transparent"
             >
-              <HamburgerIcon /> Menu
+              <HamburgerIcon /> {t('nav.menu')}
             </button>
             <span className="w-px h-5 shrink-0 mx-1" style={{ background: 'rgba(255,255,255,0.20)' }} />
-            <button className="flex items-center gap-[6px] px-3 text-white type-caption hover:opacity-70 transition-opacity cursor-pointer border-none bg-transparent">
-              en <ChevronDown />
-            </button>
+            <LangSwitcher />
             <span className="w-px h-5 shrink-0 mx-1" style={{ background: 'rgba(255,255,255,0.20)' }} />
             <a
-              href="#apartments"
+              href={`/${lang}/#apartments`}
               className="flex items-center gap-[6px] px-4 text-white type-caption no-underline hover:opacity-70 transition-opacity"
             >
-              Apartments <ChevronRight />
+              {t('nav.apartments')} <ChevronRight />
             </a>
           </div>
 
@@ -268,12 +368,12 @@ export default function Hero() {
               onMouseEnter={e => (e.currentTarget.style.background = '#3d2a20')}
               onMouseLeave={e => (e.currentTarget.style.background = '#2D1E17')}
             >
-              Check availability
+              {t('nav.checkAvailability')}
             </button>
           </div>
         </div>
 
-        {/* Dropdown — always in DOM for smooth close animation */}
+        {/* Dropdown menu */}
         <div
           aria-hidden={!menuOpen}
           style={{
@@ -360,7 +460,7 @@ export default function Hero() {
                 transition: 'background 0.2s ease, color 0.2s ease',
               }}
             >
-              Check availability
+              {t('nav.checkAvailability')}
               <span style={{
                 opacity: hoveredItem === 'book' ? 1 : 0,
                 transform: hoveredItem === 'book' ? 'translateX(0)' : 'translateX(-4px)',
@@ -405,31 +505,24 @@ export default function Hero() {
               margin: 0,
             }}
           >
-            Close to the Arlberg.
+            {t('hero.headline1')}
             <br />
-            Far from the <em style={{ color: '#836953', fontStyle: 'italic' }}>noise</em>.
+            {t('hero.headline2')} <em style={{ color: '#836953', fontStyle: 'italic' }}>{t('hero.headlineAccent')}</em>{t('hero.headlinePunct')}
           </h1>
 
-          {/* Hero CTAs */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: '2.5rem', pointerEvents: 'auto', justifyContent: 'center' }}>
-            <button
-              onClick={openBooking}
-              className="hero-cta-primary"
-            >
-              Check availability
-            </button>
-            <a
-              href="#apartments"
-              className="hero-secondary-cta"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('apartments')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              Discover the apartments
-              <span className="hero-arrow" style={{ display: 'inline-block' }}>↓</span>
-            </a>
-          </div>
+          {/* Hero CTA */}
+          <a
+            href={`/${lang}/#apartments`}
+            className="hero-secondary-cta"
+            onClick={(e) => {
+              e.preventDefault()
+              document.getElementById('apartments')?.scrollIntoView({ behavior: 'smooth' })
+            }}
+            style={{ marginTop: '2.5rem', pointerEvents: 'auto' }}
+          >
+            {t('hero.cta')}
+            <span className="hero-arrow" style={{ display: 'inline-block' }}>↓</span>
+          </a>
 
         </div>
       </div>

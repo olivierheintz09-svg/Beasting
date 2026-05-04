@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useReveal } from '@/lib/use-reveal'
 import { apartments } from '@/lib/mock-data'
+import { useLocale } from '@/lib/locale-context'
 import type { Apartment } from '@/types'
 
 const HOUSE_IMAGES: Record<string, string> = {
@@ -24,11 +25,17 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
   const { id, name, sleeps, rooms, area, pricePerNight } = apartment
   const imageSrc = HOUSE_IMAGES[id]
   const isHovered = hovered === id
+  const { lang, t } = useLocale()
+
+  const sleepsLabel = t('houses.sleeps', { n: sleeps })
+  const bedroomsLabel = rooms === 1
+    ? t('houses.bedroom', { n: rooms })
+    : t('houses.bedrooms', { n: rooms })
 
   return (
     <Link
-      href={`/apartments/the-${id}`}
-      aria-label={`View ${name}`}
+      href={`/${lang}/apartments/the-${id}`}
+      aria-label={t('houses.viewAlt', { name })}
       className="apt-card-link block"
       onMouseEnter={() => setHovered(id)}
       onMouseLeave={() => setHovered(null)}
@@ -74,7 +81,7 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
             color: '#fff',
             letterSpacing: '0.02em',
           }}>
-            from €{pricePerNight} / night
+            {t('houses.fromPrice', { price: pricePerNight })}
           </span>
         </div>
       </div>
@@ -101,9 +108,9 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
           }}>
             <span>{area} m²</span>
             <span style={{ color: 'rgba(0,0,0,0.18)' }}>·</span>
-            <span>{rooms} bed{rooms !== 1 ? 's' : ''}</span>
+            <span>{bedroomsLabel}</span>
             <span style={{ color: 'rgba(0,0,0,0.18)' }}>·</span>
-            <span>Sleeps {sleeps}</span>
+            <span>{sleepsLabel}</span>
           </div>
         </div>
         <p style={{
@@ -113,9 +120,9 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
           color: 'rgba(0,0,0,0.50)',
           margin: '5px 0 0',
         }}>
-          From{' '}
-          <span style={{ color: '#836953', fontWeight: 600 }}>€{pricePerNight}</span>
-          {' '}/ night · Cleaning, linen & tourist tax included
+          {t('houses.fromPrice', { price: pricePerNight })}
+          {' · '}
+          {t('houses.inclNote')}
         </p>
       </div>
     </Link>
@@ -125,6 +132,7 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
 export function HousesSection() {
   const [hovered, setHovered] = useState<string | null>(null)
   const { ref, style } = useReveal(0.15)
+  const { t } = useLocale()
 
   const lodge = apartments.find((a) => a.id === 'lodge')!
   const others = apartments.filter((a) => a.id !== 'lodge')
@@ -144,7 +152,7 @@ export function HousesSection() {
             color: 'rgba(0,0,0,0.38)',
             margin: '0 0 16px',
           }}>
-            (Apartments)
+            {t('houses.label')}
           </p>
           <h2 style={{
             fontFamily: 'var(--font-serif)',
@@ -154,7 +162,7 @@ export function HousesSection() {
             margin: 0,
             letterSpacing: '-0.02em',
           }}>
-            Three apartments, one address
+            {t('houses.heading')}
           </h2>
         </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useReveal } from '@/lib/use-reveal'
+import { useLocale } from '@/lib/locale-context'
 
 const REVIEWS = [
   {
@@ -32,6 +33,7 @@ const REVIEWS = [
 export function ReviewsSection() {
   const { ref: headerRef, style: headerStyle } = useReveal(0.2)
   const { ref: gridRef, style: gridStyle } = useReveal(0.1)
+  const { t } = useLocale()
 
   return (
     <section className="px-6 md:px-20 py-20 md:py-[100px]" style={{ background: '#FAF8F5' }}>
@@ -47,7 +49,7 @@ export function ReviewsSection() {
               color: 'rgba(0,0,0,0.50)',
               letterSpacing: '0.04em',
             }}>
-              Guest notes
+              {t('reviews.eyebrow')}
             </span>
           </div>
           <h2 style={{
@@ -58,7 +60,7 @@ export function ReviewsSection() {
             margin: 0,
             letterSpacing: '-0.02em',
           }}>
-            In their own words
+            {t('reviews.heading')}
           </h2>
         </div>
 
@@ -75,7 +77,7 @@ export function ReviewsSection() {
                   margin: '0 0 24px',
                   fontStyle: 'italic',
                 }}>
-                  "{review.quote}"
+                  &ldquo;{review.quote}&rdquo;
                 </p>
                 <footer>
                   <p style={{

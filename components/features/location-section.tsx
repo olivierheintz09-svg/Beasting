@@ -1,26 +1,29 @@
+'use client'
+
 import Image from 'next/image'
 import { ScrollReveal } from './scroll-reveal'
-
-const STATS = [
-  { key: '1 min', value: 'Walk to the village bus stop (line 4242, every 30 min).' },
-  { key: '5 min', value: 'Bus ride to the St. Anton Galzigbahn gondola.' },
-  { key: '1 hr', value: 'By car or train from Innsbruck airport (INN).' },
-]
+import { useLocale } from '@/lib/locale-context'
 
 export function LocationSection() {
+  const { t } = useLocale()
+
+  const stats = [0, 1, 2].map((i) => ({
+    key: t(`location.stats.${i}.key`),
+    value: t(`location.stats.${i}.value`),
+  }))
+
   return (
     <section id="location" className="bg-canvas px-[22px] py-[88px]">
       <div className="max-w-[980px] mx-auto">
         <ScrollReveal>
           <h2 className="type-section text-center mb-[14px]">
-            Schnann. Easy to reach. Hard to leave.
+            {t('location.heading')}
           </h2>
           <p
             className="type-sub text-center max-w-[640px] mx-auto mb-14"
             style={{ color: 'rgba(0,0,0,0.80)' }}
           >
-            A single-street village in the Stanzertal. Five minutes by bus to St. Anton.
-            One hour by car from Innsbruck airport.
+            {t('location.sub')}
           </p>
         </ScrollReveal>
 
@@ -60,7 +63,7 @@ export function LocationSection() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {STATS.map((stat, i) => (
+          {stats.map((stat, i) => (
             <ScrollReveal key={stat.key} delay={i * 0.07}>
               <div className="bg-white rounded-[8px] p-6">
                 <div className="type-section m-0">{stat.key}</div>

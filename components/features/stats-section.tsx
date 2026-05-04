@@ -2,33 +2,12 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { useReveal } from '@/lib/use-reveal'
+import { useLocale } from '@/lib/locale-context'
 
-const STATS = [
-  {
-    id: 'galzigbahn',
-    target: 10,
-    duration: 1400,
-    suffix: 'min',
-    label: 'To the Galzigbahn',
-    description:
-      "Just ten minutes from the Arlberg's main cable car — close enough for first tracks, far enough for real quiet in the evening.",
-  },
-  {
-    id: 'innsbruck',
-    target: 1,
-    duration: 800,
-    suffix: 'hr',
-    label: 'From Innsbruck airport',
-    description: 'A single drive through the Inn valley. No transfers, no detours.',
-  },
-  {
-    id: 'snow',
-    target: 200,
-    duration: 2000,
-    suffix: '+',
-    label: 'Days of snow per year',
-    description: 'One of the most reliable snow regions in the Alps.',
-  },
+const STAT_CONFIG = [
+  { id: 'galzigbahn', target: 10, duration: 1400 },
+  { id: 'innsbruck', target: 1, duration: 800 },
+  { id: 'snow', target: 200, duration: 2000 },
 ]
 
 type StatCardProps = {
@@ -42,17 +21,16 @@ type StatCardProps = {
 
 function StatCard({ target, duration, suffix, label, description, started }: StatCardProps) {
   const [count, setCount] = useState(0)
-  const isMuted = suffix === 'min' || suffix === 'hr'
+  const isMuted = suffix === 'min' || suffix === 'hr' || suffix === 'Std.'
 
   useEffect(() => {
     if (!started) return
-    const DURATION = duration
     const startTime = performance.now()
     let raf: number
 
     const animate = (now: number) => {
       const elapsed = now - startTime
-      const progress = Math.min(elapsed / DURATION, 1)
+      const progress = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount(Math.round(eased * target))
       if (progress < 1) raf = requestAnimationFrame(animate)
@@ -116,6 +94,7 @@ export function StatsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [started, setStarted] = useState(false)
   const { ref: revealRef, style: revealStyle } = useReveal(0.2)
+  const { t } = useLocale()
 
   useEffect(() => {
     const el = sectionRef.current
@@ -147,11 +126,19 @@ export function StatsSection() {
           marginBottom: 40,
           marginTop: 0,
         }}>
-          ● By the numbers
+          {t('stats.label')}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {STATS.map((stat) => (
-            <StatCard key={stat.id} {...stat} started={started} />
+          {STAT_CONFIG.map((stat, i) => (
+            <StatCard
+              key={stat.id}
+              target={stat.target}
+              duration={stat.duration}
+              suffix={t(`stats.items.${i}.suffix`)}
+              label={t(`stats.items.${i}.label`)}
+              description={t(`stats.items.${i}.description`)}
+              started={started}
+            />
           ))}
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { apartments } from '@/lib/mock-data'
+import { useLocale } from '@/lib/locale-context'
 import type { Apartment } from '@/types'
 
 type Step = 'dates' | 'results' | 'confirm'
@@ -31,6 +32,7 @@ export function BookingSheet({ open, onClose }: Props) {
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [searchHovered, setSearchHovered] = useState(false)
   const [searchActive, setSearchActive] = useState(false)
+  const { t, lang } = useLocale()
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
@@ -114,11 +116,11 @@ export function BookingSheet({ open, onClose }: Props) {
           transition: 'transform 0.3s ease-out',
         }}
       >
-        <SheetHeader onClose={onClose} />
+        <SheetHeader onClose={onClose} title={t('booking.title')} />
 
         {step === 'dates' && (
           <div style={{ padding: 32 }}>
-            <label style={labelStyle}>Arrive</label>
+            <label style={labelStyle}>{t('booking.arrive')}</label>
             <div style={{ position: 'relative', marginBottom: 20 }}>
               <input
                 type="date"
@@ -141,7 +143,7 @@ export function BookingSheet({ open, onClose }: Props) {
               </span>
             </div>
 
-            <label style={labelStyle}>Depart</label>
+            <label style={labelStyle}>{t('booking.depart')}</label>
             <div style={{ position: 'relative', marginBottom: 20 }}>
               <input
                 type="date"
@@ -164,7 +166,7 @@ export function BookingSheet({ open, onClose }: Props) {
               </span>
             </div>
 
-            <label style={labelStyle}>Guests</label>
+            <label style={labelStyle}>{t('booking.guests')}</label>
             <GuestCounter guests={guests} onChange={setGuests} />
 
             <button
@@ -196,7 +198,7 @@ export function BookingSheet({ open, onClose }: Props) {
                 transition: 'background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease',
               }}
             >
-              Search
+              {t('booking.search')}
             </button>
           </div>
         )}
@@ -220,7 +222,7 @@ export function BookingSheet({ open, onClose }: Props) {
   )
 }
 
-function SheetHeader({ onClose }: { onClose: () => void }) {
+function SheetHeader({ onClose, title }: { onClose: () => void; title: string }) {
   const [closeHovered, setCloseHovered] = useState(false)
   return (
     <div
@@ -239,7 +241,7 @@ function SheetHeader({ onClose }: { onClose: () => void }) {
         color: '#1a1a1a',
         letterSpacing: '-0.01em',
       }}>
-        Check availability
+        {title}
       </div>
       <button
         onClick={onClose}
@@ -331,10 +333,13 @@ type ResultsProps = {
 }
 
 function ResultsStep({ arrive, depart, guests, matches, onBack, onSelect }: ResultsProps) {
+  const { t } = useLocale()
+  const guestLabel = guests === 1 ? t('booking.guestSingular') : t('booking.guestPlural')
+
   return (
     <div style={{ padding: '20px 32px 32px' }}>
       <p className="type-caption" style={{ color: 'rgba(0,0,0,0.60)', marginBottom: 16, marginTop: 0 }}>
-        {arrive} → {depart} · {guests} guest{guests === 1 ? '' : 's'}
+        {arrive} → {depart} · {guests} {guestLabel}
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {matches.map((a) => (
@@ -353,7 +358,7 @@ function ResultsStep({ arrive, depart, guests, matches, onBack, onSelect }: Resu
             <div style={{ flex: 1 }}>
               <div className="type-body-bold">{a.name}</div>
               <div className="type-caption" style={{ color: 'rgba(0,0,0,0.48)' }}>
-                Sleeps {a.sleeps} · {a.area} m²
+                {t('booking.sleeps', { n: a.sleeps })} · {a.area} m²
               </div>
             </div>
             <div className="type-caption-bold">€{a.pricePerNight}/nt</div>
@@ -361,7 +366,7 @@ function ResultsStep({ arrive, depart, guests, matches, onBack, onSelect }: Resu
         ))}
         {matches.length === 0 && (
           <p className="type-body" style={{ color: 'rgba(0,0,0,0.80)', margin: 0 }}>
-            No apartment sleeps {guests}. Reduce the guest count or contact us.
+            {t('booking.noMatch', { n: guests })}
           </p>
         )}
       </div>
@@ -370,7 +375,7 @@ function ResultsStep({ arrive, depart, guests, matches, onBack, onSelect }: Resu
         className="bg-transparent border-none cursor-pointer type-caption"
         style={{ color: '#836953', marginTop: 16, padding: 0 }}
       >
-        ← Change dates
+        {t('booking.changeDates')}
       </button>
     </div>
   )
@@ -387,16 +392,18 @@ function ConfirmStep({
   depart: string
   onClose: () => void
 }) {
+  const { t } = useLocale()
+
   return (
     <div style={{ padding: '28px 32px 32px', textAlign: 'center' }}>
-      <div className="type-tile" style={{ marginTop: 8, marginBottom: 6 }}>Held for 10 minutes.</div>
+      <div className="type-tile" style={{ marginTop: 8, marginBottom: 6 }}>{t('booking.held')}</div>
       <p className="type-body" style={{ color: 'rgba(0,0,0,0.80)', marginBottom: 20 }}>
         {pick.name} · {arrive} → {depart} · €{pick.pricePerNight}/night.
         <br />
-        We'll email confirmation within the hour.
+        {t('booking.emailConfirm')}
       </p>
       <button onClick={onClose} className="pill pill-fill-blue border-none cursor-pointer">
-        Done
+        {t('booking.done')}
       </button>
     </div>
   )

@@ -1,9 +1,11 @@
 'use client'
 
 import { useReveal } from '@/lib/use-reveal'
+import { useLocale } from '@/lib/locale-context'
 
 export function AboutSection() {
   const { ref, style } = useReveal(0.2)
+  const { t } = useLocale()
 
   return (
     <section className="px-6 md:px-20 py-20 md:py-[120px]" style={{ background: '#FAF8F5' }}>
@@ -20,7 +22,7 @@ export function AboutSection() {
               letterSpacing: '0.18em',
               color: 'rgba(0,0,0,0.42)',
             }}>
-              ● About us
+              {t('about.label')}
             </span>
           </div>
 
@@ -34,13 +36,10 @@ export function AboutSection() {
               color: '#1a1a1a',
               margin: '0 0 36px',
             }}>
-              Three apartments on the quiet side of the Arlberg. Alpzeit is a small family house
-              in Schnann, ten minutes from the Galzigbahn but a world away from the crowds. We
-              rent it the way we&apos;d want to stay ourselves — unhurried, understated, and
-              always with the mountains in view.
+              {t('about.body')}
             </p>
             <a href="#apartments" className="about-know-more">
-              Know more →
+              {t('about.link')}
             </a>
           </div>
 

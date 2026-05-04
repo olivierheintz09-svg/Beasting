@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "homeTitle": "Alpzeit · Apartments am Arlberg in Schnann",
+    "homeDescription": "Drei Apartments auf der ruhigen Seite des Arlbergs. Zehn Minuten von der Galzigbahn, eine Stunde vom Flughafen Innsbruck. Direkt buchen.",
+    "ogLocale": "de_DE"
+  },
+  "nav": {
+    "menu": "Menü",
+    "apartments": "Apartments",
+    "schnann": "Schnann",
+    "arlberg": "Arlberg",
+    "journal": "Journal",
+    "checkAvailability": "Verfügbarkeit prüfen",
+    "langLabel": "de"
+  },
+  "langToggle": {
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "hero": {
+    "headline1": "Nah am Arlberg.",
+    "headline2": "Fern vom",
+    "headlineAccent": "Lärm",
+    "headlinePunct": ".",
+    "cta": "Die Apartments entdecken"
+  },
+  "about": {
+    "label": "● Über uns",
+    "body": "Drei Apartments auf der ruhigen Seite des Arlbergs. Die Alpzeit ist ein kleines Familienhaus in Schnann — zehn Minuten von der Galzigbahn entfernt, doch fern vom Trubel. Wir vermieten es so, wie wir selbst gerne wohnen würden: in Ruhe, schlicht und immer mit Blick auf die Berge.",
+    "link": "Mehr erfahren →"
+  },
+  "stats": {
+    "label": "● In Zahlen",
+    "items": [
+      {
+        "suffix": "min",
+        "label": "Zur Galzigbahn",
+        "description": "Nur zehn Minuten von der Hauptseilbahn am Arlberg entfernt — nah genug für die ersten Schwünge, weit genug für echte Ruhe am Abend."
+      },
+      {
+        "suffix": "Std.",
+        "label": "Vom Flughafen Innsbruck",
+        "description": "Eine einzige Fahrt durch das Inntal. Kein Umsteigen, keine Umwege."
+      },
+      {
+        "suffix": "+",
+        "label": "Schneetage pro Jahr",
+        "description": "Eine der schneesichersten Regionen der Alpen."
+      }
+    ]
+  },
+  "houses": {
+    "label": "(Apartments)",
+    "heading": "Drei Apartments, eine Adresse",
+    "sleeps": "Für {{n}} Personen",
+    "bedrooms": "{{n}} Schlafzimmer",
+    "bedroom": "{{n}} Schlafzimmer",
+    "fromPrice": "Ab {{price}} € / Nacht",
+    "inclNote": "Reinigung, Bettwäsche & Kurtaxe inklusive",
+    "viewAlt": "{{name}} ansehen"
+  },
+  "atmosphere": {
+    "eyebrow": "Die Umgebung entdecken",
+    "heading": "Schnann, ganz langsam.",
+    "playLabel": "Video abspielen",
+    "closeLabel": "Video schließen"
+  },
+  "location": {
+    "heading": "Schnann. Leicht zu erreichen. Schwer zu verlassen.",
+    "sub": "Ein Dorf an einer Straße im Stanzertal. Fünf Minuten mit dem Bus nach St. Anton. Eine Stunde mit dem Auto vom Flughafen Innsbruck.",
+    "stats": [
+      { "key": "1 min", "value": "Zu Fuß zur Dorfhaltestelle (Linie 4242, alle 30 Minuten)." },
+      { "key": "5 min", "value": "Mit dem Bus zur Galzigbahn-Gondel in St. Anton." },
+      { "key": "1 Std.", "value": "Mit Auto oder Bahn vom Flughafen Innsbruck (INN)." }
+    ]
+  },
+  "arlberg": {
+    "heading": "Der Arlberg, direkt vor der Tür.",
+    "sub": "305 km Pisten. 88 Lifte. Mit dem Bus zur Piste, am Nachmittag zurück bis vor die Apartmenttür.",
+    "skiSeason": "Wintersaison",
+    "summerHiking": "Sommerwandern"
+  },
+  "reviews": {
+    "eyebrow": "Gästestimmen",
+    "heading": "In ihren eigenen Worten"
+  },
+  "faq": {
+    "eyebrow": "Fragen",
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Wie weit ist Alpzeit von den Skiliften entfernt?",
+        "a": "Die Galzigbahn — die Hauptseilbahn ins Skigebiet St. Anton — ist zehn Fahrminuten von Schnann entfernt. Während der Skisaison hält ein kostenloser Skibus mehrmals täglich im Dorf."
+      },
+      {
+        "q": "Ist Direktbuchung günstiger als über eine Agentur?",
+        "a": "Ja. Bei Direktbuchung zahlen Sie keine Agenturprovision — was für Sie einen niedrigeren Preis bei gleichem Apartment bedeutet. Außerdem stehen wir bei Fragen oder Wünschen direkt für Sie zur Verfügung."
+      },
+      {
+        "q": "Was ist im Preis enthalten?",
+        "a": "Der Nachtpreis beinhaltet die Endreinigung, Bettwäsche und Handtücher sowie die österreichische Ortstaxe. Es gibt keine versteckten Kosten."
+      },
+      {
+        "q": "Kann man auch im Sommer anreisen, nicht nur im Winter?",
+        "a": "Selbstverständlich. Schnann und das Stanzertal sind das ganze Jahr über wunderschön. Im Sommer locken Wandern, Mountainbiken und der Verwallsee. Einige Gäste kommen gezielt in der ruhigeren Sommersaison."
+      },
+      {
+        "q": "Wie lange ist die Mindestaufenthaltsdauer?",
+        "a": "In der Hochsaison (Weihnachten–Neujahr und Februarferien) beträgt die Mindestaufenthaltsdauer sieben Nächte. In allen anderen Zeiträumen sind wir flexibel — ab drei Nächten."
+      },
+      {
+        "q": "Gibt es Parkmöglichkeiten?",
+        "a": "Ja, jedes Apartment verfügt über einen eigenen Parkplatz. Im Winter wird der Parkbereich regelmäßig geräumt."
+      },
+      {
+        "q": "Welche Stornierungsbedingungen gelten?",
+        "a": "Stornierungen bis 30 Tage vor Anreise werden vollständig erstattet. Zwischen 30 und 14 Tagen werden 50 % erstattet. Innerhalb von 14 Tagen wird der volle Betrag fällig. Wir empfehlen den Abschluss einer Reiserücktrittsversicherung."
+      },
+      {
+        "q": "Dürfen wir einen Hund mitbringen?",
+        "a": "Guterzogene Hunde sind in der Lodge und im Hearth nach vorheriger Absprache herzlich willkommen. Ein kleiner Reinigungszuschlag wird berechnet. Bitte geben Sie dies bei Ihrer Anfrage an."
+      }
+    ]
+  },
+  "journal": {
+    "heading": "Aus dem Journal",
+    "readMore": "Weiterlesen →",
+    "posts": [
+      { "id": "pack-february", "title": "Was im Februar in den Koffer gehört" },
+      { "id": "quiet-season", "title": "Die ruhige Zeit, Mitte April" },
+      { "id": "week-stanzertal", "title": "Eine Woche im Stanzertal" }
+    ]
+  },
+  "footer": {
+    "bookDirect": "Direkt buchen",
+    "bestRate": "Der beste Preis ist immer hier.",
+    "bookDirectSub": "Direkt bei uns buchen — keine Agentur, keine Provision, kein Aufschlag.",
+    "checkAvailability": "Verfügbarkeit prüfen",
+    "newsletter": {
+      "heading": "Saisonale Neuigkeiten und ruhige Wochen",
+      "note": "Gelegentliche Post. Kein Marketing.",
+      "placeholder": "ihre@email.de",
+      "subscribe": "Abonnieren",
+      "thanks": "Danke — wir melden uns."
+    },
+    "cols": {
+      "apartments": "Apartments",
+      "location": "Lage",
+      "stay": "Aufenthalt",
+      "alpzeit": "Alpzeit"
+    },
+    "links": {
+      "lodge": "The Lodge",
+      "hearth": "The Hearth",
+      "eyrie": "The Eyrie",
+      "schnann": "Schnann",
+      "arlberg": "Arlberg",
+      "innsbruck": "Anreise Innsbruck",
+      "houseRules": "Hausordnung",
+      "arrival": "Anreise & Schlüssel",
+      "seasonality": "Saisonzeiten",
+      "journal": "Journal",
+      "contact": "Kontakt",
+      "privacy": "Datenschutz & DSGVO"
+    },
+    "trust": {
+      "registration": "Registriertes Ferienobjekt · Vorarlberg, Österreich",
+      "cancellation": "Stornierungsbedingungen",
+      "privacy": "Datenschutz & DSGVO"
+    },
+    "copyright": "© 2026 HAUS ALPZEIT · SCHNANN 41, 6574 PETTNEU AM ARLBERG, ÖSTERREICH · HELLO@ALPZEIT.AT"
+  },
+  "booking": {
+    "title": "Verfügbarkeit prüfen",
+    "arrive": "Anreise",
+    "depart": "Abreise",
+    "guests": "Gäste",
+    "search": "Suchen",
+    "changeDates": "← Datum ändern",
+    "sleeps": "Für {{n}} Personen",
+    "noMatch": "Kein Apartment hat Platz für {{n}} Personen. Bitte Gästezahl reduzieren oder uns kontaktieren.",
+    "held": "Für 10 Minuten reserviert.",
+    "emailConfirm": "Wir bestätigen per E-Mail innerhalb der nächsten Stunde.",
+    "done": "Fertig",
+    "guestSingular": "Gast",
+    "guestPlural": "Gäste"
+  },
+  "apartmentPage": {
+    "label": "Apartment",
+    "aboutLabel": "● Über dieses Apartment",
+    "photosLabel": "● Fotos",
+    "amenitiesLabel": "● Ausstattung",
+    "backLink": "← Zurück zu allen Apartments",
+    "instantConfirm": "Sofortbestätigung. Keine Buchungsgebühren.",
+    "arriveLabel": "Anreise",
+    "departLabel": "Abreise",
+    "guestsLabel": "Gäste",
+    "photoAlt": "Foto {{n}}",
+    "amenities": [
+      "Vollausgestattete Küche",
+      "Kachelofen",
+      "WLAN im gesamten Apartment",
+      "Waschmaschine und Trockner",
+      "Südbalkon",
+      "Skiabstellraum mit Schuhwärmer",
+      "Privatparkplatz (2 Stellplätze)",
+      "Bettwäsche und Handtücher inklusive"
+    ],
+    "longDescriptions": {
+      "lodge": [
+        "Auf zwei Etagen verteilt ist The Lodge das größte der drei Apartments. Die Küche öffnet sich zu einem langen Esstisch aus Holz, der bequem Platz für zwölf Personen bietet — mit zwei separaten Wohnbereichen für ruhige und gesellige Abende.",
+        "Fünf Schlafzimmer teilen sich drei Bäder. Ein Kachelofen im Hauptwohnraum, große nach Süden ausgerichtete Fenster mit Bergblick und ein eigener Eingang von der Seite des Hauses.",
+        "[Platzhalter — wird vom Eigentümer ergänzt.]"
+      ],
+      "hearth": [
+        "Das Hearth ist ein zweistöckiges Apartment aus Holz und Stein. Eine offene Küche mit zentraler Insel, drei Schlafzimmer und ein nach Süden ausgerichteter Balkon, der nachmittags in der Sonne liegt.",
+        "Ideal für eine Familie oder zwei Paare. Der Wohnraum hat einen Kachelofen und direkten Zugang zur Terrasse mit Blick ins Tal.",
+        "[Platzhalter — wird vom Eigentümer ergänzt.]"
+      ],
+      "eyrie": [
+        "The Eyrie befindet sich im obersten Stockwerk des Hauses — ein Dachgeschoss-Studio mit einem Dachfenster über dem Bett. Bei klarem Wetter reihen sich die Arlberggipfel darin auf.",
+        "Ein ruhiger Rückzugsort für eine oder zwei Personen. Klein, aber durchdacht eingerichtet, mit einer vollausgestatteten Kitchenette und einem ausklappbaren Schreibtisch.",
+        "[Platzhalter — wird vom Eigentümer ergänzt.]"
+      ]
+    },
+    "apartmentDescriptions": {
+      "lodge": "Das größte der drei Apartments. Großzügige Küche, zwei Wohnbereiche und ein langer Holztisch für alle zwölf Personen.",
+      "hearth": "Zwei Etagen aus Holz und Stein. Offene Küche, drei Schlafzimmer, der Balkon nach Süden ausgerichtet.",
+      "eyrie": "Ein Dachgeschoss-Studio. Dachfenster über dem Bett; bei klarem Wetter reihen sich die Arlberggipfel darin auf."
+    },
+    "specsArea": "{{n}} m²",
+    "specsBeds": "{{n}} Schlafzimmer",
+    "specsBed": "{{n}} Schlafzimmer",
+    "specsSleeps": "Für {{n}} Personen",
+    "specsPrice": "Ab {{price}} € / Nacht"
+  },
+  "stickyCta": {
+    "checkAvailability": "Verfügbarkeit prüfen"
+  },
+  "sidebar": {
+    "checkAvailability": "Verfügbarkeit prüfen",
+    "arriveLabel": "Anreise",
+    "departLabel": "Abreise",
+    "selectDate": "Datum wählen",
+    "guestsLabel": "Gäste",
+    "guestSingular": "Gast",
+    "guestPlural": "Gäste",
+    "confirm": "Sofortbestätigung. Keine Buchungsgebühren."
+  }
+}

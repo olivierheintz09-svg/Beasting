@@ -1,8 +1,13 @@
+'use client'
+
 import Image from 'next/image'
 import { ScrollReveal } from './scroll-reveal'
 import { LinkPill } from '@/components/ui/link-pill'
+import { useLocale } from '@/lib/locale-context'
 
 export function ArlbergSection() {
+  const { t } = useLocale()
+
   return (
     <section
       id="arlberg"
@@ -10,13 +15,12 @@ export function ArlbergSection() {
     >
       <div className="max-w-[980px] mx-auto">
         <ScrollReveal>
-          <h2 className="type-hero m-0">The Arlberg, from the doorstep.</h2>
+          <h2 className="type-hero m-0">{t('arlberg.heading')}</h2>
           <p
             className="type-sub mt-[18px] mb-10 max-w-[640px] mx-auto"
             style={{ color: 'rgba(0,0,0,0.64)' }}
           >
-            305 km of pistes. 88 lifts. Ski-in on the bus; ski back to the apartment door
-            by 16:30.
+            {t('arlberg.sub')}
           </p>
         </ScrollReveal>
 
@@ -46,10 +50,10 @@ export function ArlbergSection() {
         <ScrollReveal>
           <div className="flex gap-[14px] justify-center flex-wrap">
             <LinkPill variant="outline-light" href="#">
-              Ski season dates
+              {t('arlberg.skiSeason')}
             </LinkPill>
             <LinkPill variant="outline-light" href="#">
-              Summer hiking
+              {t('arlberg.summerHiking')}
             </LinkPill>
           </div>
         </ScrollReveal>

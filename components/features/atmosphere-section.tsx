@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useReveal } from '@/lib/use-reveal'
+import { useLocale } from '@/lib/locale-context'
 
 const BG_VIDEO = '/schnann-background.mp4'
 const POSTER = '/stanzertal-valley.jpg'
@@ -22,18 +23,17 @@ export function AtmosphereSection() {
 
   const { ref: headerRef, style: headerStyle } = useReveal(0.2)
   const { ref: revealRef, style: revealStyle } = useReveal(0.1)
+  const { t } = useLocale()
 
   const bgVideoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const lightboxVideoRef = useRef<HTMLVideoElement>(null)
   const srcLoaded = useRef(false)
 
-  // Ensure muted is set imperatively (React muted prop quirk on some browsers)
   useEffect(() => {
     if (bgVideoRef.current) bgVideoRef.current.muted = true
   }, [])
 
-  // Lazy-load background video + pause/resume on scroll
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -42,7 +42,6 @@ export function AtmosphereSection() {
       ([entry]) => {
         const video = bgVideoRef.current
         if (!video) return
-
         if (entry.isIntersecting) {
           if (!srcLoaded.current) {
             video.src = BG_VIDEO
@@ -73,7 +72,6 @@ export function AtmosphereSection() {
     })
   }
 
-  // Escape key closes lightbox
   useEffect(() => {
     if (!lightboxMounted) return
     const handler = (e: KeyboardEvent) => {
@@ -98,7 +96,7 @@ export function AtmosphereSection() {
               color: 'rgba(0,0,0,0.50)',
               letterSpacing: '0.04em',
             }}>
-              Discover the surroundings
+              {t('atmosphere.eyebrow')}
             </span>
           </div>
           <h2 style={{
@@ -109,7 +107,7 @@ export function AtmosphereSection() {
             margin: '0 0 56px',
             letterSpacing: '-0.02em',
           }}>
-            Schnann, slowly.
+            {t('atmosphere.heading')}
           </h2>
         </div>
       </div>
@@ -125,7 +123,6 @@ export function AtmosphereSection() {
             aspectRatio: '16/9',
           }}
         >
-          {/* Muted autoplay background loop — src set lazily via IntersectionObserver */}
           <video
             ref={bgVideoRef}
             loop
@@ -141,7 +138,6 @@ export function AtmosphereSection() {
             }}
           />
 
-          {/* Dark tint */}
           <div style={{
             position: 'absolute',
             inset: 0,
@@ -149,12 +145,11 @@ export function AtmosphereSection() {
             pointerEvents: 'none',
           }} />
 
-          {/* Glass play button */}
           <button
             onClick={openLightbox}
             onMouseEnter={() => setPlayHovered(true)}
             onMouseLeave={() => setPlayHovered(false)}
-            aria-label="Play video"
+            aria-label={t('atmosphere.playLabel')}
             style={{
               position: 'absolute',
               top: '50%',
@@ -205,12 +200,11 @@ export function AtmosphereSection() {
             transition: 'opacity 0.3s ease-out',
           }}
         >
-          {/* Close button */}
           <button
             onClick={(e) => { e.stopPropagation(); closeLightbox() }}
             onMouseEnter={() => setCloseHovered(true)}
             onMouseLeave={() => setCloseHovered(false)}
-            aria-label="Close video"
+            aria-label={t('atmosphere.closeLabel')}
             style={{
               position: 'absolute',
               top: 24,
@@ -238,7 +232,6 @@ export function AtmosphereSection() {
             ×
           </button>
 
-          {/* Lightbox video */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{

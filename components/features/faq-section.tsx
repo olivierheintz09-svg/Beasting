@@ -2,56 +2,30 @@
 
 import { useState } from 'react'
 import { useReveal } from '@/lib/use-reveal'
+import { useLocale } from '@/lib/locale-context'
 
-const FAQS = [
-  {
-    q: 'How far is Alpzeit from the ski lifts?',
-    a: 'The Galzigbahn — the main cable car into the St. Anton ski area — is a ten-minute drive from Schnann. During the ski season, a free ski bus stops in the village several times a day.',
-  },
-  {
-    q: 'Is direct booking better than booking through an agency?',
-    a: 'Yes. When you book directly you pay no agency commission, which means a lower rate for the same apartment. You also deal with us directly for any questions or requests.',
-  },
-  {
-    q: 'What does the price include?',
-    a: 'The nightly rate includes final cleaning, bed linen and towels, and Austrian tourist tax. There are no hidden fees.',
-  },
-  {
-    q: 'Can we arrive in summer, not just winter?',
-    a: 'Absolutely. Schnann and the Stanzertal valley are beautiful year-round. Summer brings hiking, mountain biking, and the Verwallsee lake. Several guests return specifically for the quieter summer season.',
-  },
-  {
-    q: 'What is the minimum stay?',
-    a: 'During peak ski season (Christmas–New Year and February school holidays) the minimum stay is seven nights. All other periods are flexible — from three nights.',
-  },
-  {
-    q: 'Is there parking at the property?',
-    a: 'Yes, each apartment has a dedicated parking space. In winter the parking area is regularly cleared of snow.',
-  },
-  {
-    q: 'What is the cancellation policy?',
-    a: 'Cancellations up to 30 days before arrival are fully refunded. Between 30 and 14 days, 50% is refunded. Inside 14 days the full amount is charged. We recommend travel insurance for peace of mind.',
-  },
-  {
-    q: 'Can we bring a dog?',
-    a: 'Well-behaved dogs are welcome in the Lodge and the Hearth with prior notice. A small cleaning supplement applies. Please mention this when you enquire.',
-  },
-]
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQS.map(({ q, a }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  })),
-}
+const FAQ_COUNT = 8
 
 export function FaqSection() {
   const [open, setOpen] = useState<number>(0)
   const { ref: headerRef, style: headerStyle } = useReveal(0.2)
   const { ref: listRef, style: listStyle } = useReveal(0.1)
+  const { t } = useLocale()
+
+  const faqItems = Array.from({ length: FAQ_COUNT }, (_, i) => ({
+    q: t(`faq.items.${i}.q`),
+    a: t(`faq.items.${i}.a`),
+  }))
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
 
   return (
     <section id="faq" className="px-6 md:px-20 py-20 md:py-[100px]" style={{ background: '#fff' }}>
@@ -72,7 +46,7 @@ export function FaqSection() {
               color: 'rgba(0,0,0,0.50)',
               letterSpacing: '0.04em',
             }}>
-              Questions
+              {t('faq.eyebrow')}
             </span>
           </div>
           <h2 style={{
@@ -83,19 +57,19 @@ export function FaqSection() {
             margin: 0,
             letterSpacing: '-0.02em',
           }}>
-            Frequently asked
+            {t('faq.heading')}
           </h2>
         </div>
 
         <div ref={listRef} style={listStyle}>
-          {FAQS.map((faq, i) => {
+          {faqItems.map((faq, i) => {
             const isOpen = open === i
             return (
               <div
                 key={i}
                 style={{
                   borderTop: '1px solid rgba(0,0,0,0.08)',
-                  ...(i === FAQS.length - 1 ? { borderBottom: '1px solid rgba(0,0,0,0.08)' } : {}),
+                  ...(i === faqItems.length - 1 ? { borderBottom: '1px solid rgba(0,0,0,0.08)' } : {}),
                 }}
               >
                 <button

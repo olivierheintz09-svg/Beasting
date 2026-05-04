@@ -1,6 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import { ScrollReveal } from './scroll-reveal'
 import { journalPosts } from '@/lib/mock-data'
+import { useLocale } from '@/lib/locale-context'
 
 const POST_IMAGES: Record<string, string> = {
   'pack-february': '/klosterle-village.webp',
@@ -9,15 +12,22 @@ const POST_IMAGES: Record<string, string> = {
 }
 
 export function JournalSection() {
+  const { lang, t } = useLocale()
+
+  const localizedPosts = journalPosts.map((post, i) => ({
+    ...post,
+    title: t(`journal.posts.${i}.title`),
+  }))
+
   return (
     <section id="journal" className="bg-canvas px-[22px] py-[88px]">
       <div className="max-w-[980px] mx-auto">
         <ScrollReveal>
-          <h2 className="type-section mb-10">From the journal</h2>
+          <h2 className="type-section mb-10">{t('journal.heading')}</h2>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {journalPosts.map((post, i) => (
+          {localizedPosts.map((post, i) => (
             <ScrollReveal key={post.id} delay={i * 0.07}>
               <article className="bg-white rounded-[8px] overflow-hidden">
                 <div className="relative overflow-hidden" style={{ aspectRatio: '3/2' }}>
@@ -49,11 +59,11 @@ export function JournalSection() {
                   </p>
                   <h3 className="type-tile mt-[6px] mb-3">{post.title}</h3>
                   <a
-                    href={`/journal/${post.id}`}
+                    href={`/${lang}/journal/${post.id}`}
                     className="type-caption"
                     style={{ color: '#836953' }}
                   >
-                    Read →
+                    {t('journal.readMore')}
                   </a>
                 </div>
               </article>

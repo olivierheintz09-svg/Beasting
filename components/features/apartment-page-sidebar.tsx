@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { useBooking } from './booking-provider'
+import { useLocale } from '@/lib/locale-context'
+import { formatPrice } from '@/lib/i18n'
 import type { Apartment } from '@/types'
 
 const inputRowStyle: React.CSSProperties = {
@@ -18,6 +20,9 @@ const inputRowStyle: React.CSSProperties = {
 export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
   const { open: openBooking } = useBooking()
   const [guests, setGuests] = useState(2)
+  const { lang, t } = useLocale()
+
+  const guestLabel = guests === 1 ? t('sidebar.guestSingular') : t('sidebar.guestPlural')
 
   return (
     <>
@@ -57,10 +62,10 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
             color: '#1a1a1a',
             letterSpacing: '-0.02em',
           }}>
-            €{apartment.pricePerNight}
+            {formatPrice(apartment.pricePerNight, lang)}
           </span>
           <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.48)' }}>
-            / night
+            {lang === 'de' ? '/ Nacht' : '/ night'}
           </span>
         </div>
 
@@ -68,18 +73,18 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 8 }}>
           <button onClick={openBooking} style={inputRowStyle}>
             <div style={{ fontFamily: 'var(--font-sans)', fontSize: 10, fontWeight: 500, color: 'rgba(0,0,0,0.42)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 2 }}>
-              Arrive
+              {t('sidebar.arriveLabel')}
             </div>
             <div style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.50)' }}>
-              Select date
+              {t('sidebar.selectDate')}
             </div>
           </button>
           <button onClick={openBooking} style={inputRowStyle}>
             <div style={{ fontFamily: 'var(--font-sans)', fontSize: 10, fontWeight: 500, color: 'rgba(0,0,0,0.42)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 2 }}>
-              Depart
+              {t('sidebar.departLabel')}
             </div>
             <div style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.50)' }}>
-              Select date
+              {t('sidebar.selectDate')}
             </div>
           </button>
         </div>
@@ -95,10 +100,10 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
         }}>
           <div>
             <div style={{ fontFamily: 'var(--font-sans)', fontSize: 10, fontWeight: 500, color: 'rgba(0,0,0,0.42)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 2 }}>
-              Guests
+              {t('sidebar.guestsLabel')}
             </div>
             <div style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: '#1a1a1a' }}>
-              {guests} guest{guests !== 1 ? 's' : ''}
+              {guests} {guestLabel}
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -151,7 +156,7 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
           onMouseEnter={e => (e.currentTarget.style.background = '#6a4a3a')}
           onMouseLeave={e => (e.currentTarget.style.background = '#836953')}
         >
-          Check availability
+          {t('sidebar.checkAvailability')}
         </button>
         <p style={{
           fontFamily: 'var(--font-sans)',
@@ -160,7 +165,7 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
           textAlign: 'center',
           margin: 0,
         }}>
-          Instant confirmation. No booking fees.
+          {t('sidebar.confirm')}
         </p>
       </div>
 
@@ -190,8 +195,10 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
             {apartment.name}
           </p>
           <p style={{ fontFamily: 'var(--font-sans)', fontSize: 15, fontWeight: 600, color: '#1a1a1a', margin: 0 }}>
-            From €{apartment.pricePerNight}
-            <span style={{ fontWeight: 400, fontSize: 13, color: 'rgba(0,0,0,0.48)' }}> / night</span>
+            {formatPrice(apartment.pricePerNight, lang)}
+            <span style={{ fontWeight: 400, fontSize: 13, color: 'rgba(0,0,0,0.48)' }}>
+              {' '}{lang === 'de' ? '/ Nacht' : '/ night'}
+            </span>
           </p>
         </div>
         <button
@@ -211,7 +218,7 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
             flexShrink: 0,
           }}
         >
-          Check availability
+          {t('sidebar.checkAvailability')}
         </button>
       </div>
     </>

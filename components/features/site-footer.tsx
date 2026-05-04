@@ -2,46 +2,48 @@
 
 import { useState } from 'react'
 import { useBooking } from './booking-provider'
-
-const FOOTER_COLS = [
-  {
-    heading: 'Apartments',
-    links: [
-      { label: 'The Lodge', href: '/apartments/lodge' },
-      { label: 'The Hearth', href: '/apartments/hearth' },
-      { label: 'The Eyrie', href: '/apartments/eyrie' },
-    ],
-  },
-  {
-    heading: 'Location',
-    links: [
-      { label: 'Schnann', href: '#location' },
-      { label: 'Arlberg', href: '#arlberg' },
-      { label: 'Innsbruck arrival', href: '#location' },
-    ],
-  },
-  {
-    heading: 'Stay',
-    links: [
-      { label: 'House rules', href: '#faq' },
-      { label: 'Arrival & keys', href: '#faq' },
-      { label: 'Seasonality', href: '#journal' },
-    ],
-  },
-  {
-    heading: 'Alpzeit',
-    links: [
-      { label: 'Journal', href: '#journal' },
-      { label: 'Contact', href: 'mailto:hello@alpzeit.at' },
-      { label: 'Privacy policy', href: '/privacy' },
-    ],
-  },
-]
+import { useLocale } from '@/lib/locale-context'
 
 export function SiteFooter() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const { open: openBooking } = useBooking()
+  const { lang, t } = useLocale()
+
+  const FOOTER_COLS = [
+    {
+      heading: t('footer.cols.apartments'),
+      links: [
+        { label: t('footer.links.lodge'), href: `/${lang}/apartments/the-lodge` },
+        { label: t('footer.links.hearth'), href: `/${lang}/apartments/the-hearth` },
+        { label: t('footer.links.eyrie'), href: `/${lang}/apartments/the-eyrie` },
+      ],
+    },
+    {
+      heading: t('footer.cols.location'),
+      links: [
+        { label: t('footer.links.schnann'), href: `/${lang}/#location` },
+        { label: t('footer.links.arlberg'), href: `/${lang}/#arlberg` },
+        { label: t('footer.links.innsbruck'), href: `/${lang}/#location` },
+      ],
+    },
+    {
+      heading: t('footer.cols.stay'),
+      links: [
+        { label: t('footer.links.houseRules'), href: `/${lang}/#faq` },
+        { label: t('footer.links.arrival'), href: `/${lang}/#faq` },
+        { label: t('footer.links.seasonality'), href: `/${lang}/#journal` },
+      ],
+    },
+    {
+      heading: t('footer.cols.alpzeit'),
+      links: [
+        { label: t('footer.links.journal'), href: `/${lang}/#journal` },
+        { label: t('footer.links.contact'), href: 'mailto:hello@alpzeit.at' },
+        { label: t('footer.links.privacy'), href: `/${lang}/privacy` },
+      ],
+    },
+  ]
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,7 +69,7 @@ export function SiteFooter() {
               color: 'rgba(255,255,255,0.45)',
               margin: '0 0 10px',
             }}>
-              Book direct
+              {t('footer.bookDirect')}
             </p>
             <h2 style={{
               fontFamily: 'var(--font-serif)',
@@ -77,7 +79,7 @@ export function SiteFooter() {
               margin: 0,
               letterSpacing: '-0.02em',
             }}>
-              The best rate is always here.
+              {t('footer.bestRate')}
             </h2>
             <p style={{
               fontFamily: 'var(--font-sans)',
@@ -86,7 +88,7 @@ export function SiteFooter() {
               color: 'rgba(255,255,255,0.55)',
               margin: '10px 0 0',
             }}>
-              Book directly with us — no agency, no commission, no markup.
+              {t('footer.bookDirectSub')}
             </p>
           </div>
           <button
@@ -118,7 +120,7 @@ export function SiteFooter() {
               e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
-            Check availability
+            {t('footer.checkAvailability')}
           </button>
         </div>
       </div>
@@ -138,7 +140,7 @@ export function SiteFooter() {
               margin: '0 0 6px',
               letterSpacing: '-0.01em',
             }}>
-              Seasonal updates and quiet weeks
+              {t('footer.newsletter.heading')}
             </p>
             <p style={{
               fontFamily: 'var(--font-sans)',
@@ -146,7 +148,7 @@ export function SiteFooter() {
               color: 'rgba(255,255,255,0.45)',
               margin: 0,
             }}>
-              Occasional letters. No marketing.
+              {t('footer.newsletter.note')}
             </p>
           </div>
 
@@ -157,7 +159,7 @@ export function SiteFooter() {
               color: 'rgba(255,255,255,0.60)',
               margin: 0,
             }}>
-              Thank you — we'll be in touch.
+              {t('footer.newsletter.thanks')}
             </p>
           ) : (
             <form
@@ -168,7 +170,7 @@ export function SiteFooter() {
                 <input
                   type="email"
                   required
-                  placeholder="your@email.com"
+                  placeholder={t('footer.newsletter.placeholder')}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   style={{
@@ -206,7 +208,7 @@ export function SiteFooter() {
                 onMouseEnter={e => (e.currentTarget.style.background = '#c8bdb0')}
                 onMouseLeave={e => (e.currentTarget.style.background = '#d9cfc2')}
               >
-                Subscribe
+                {t('footer.newsletter.subscribe')}
               </button>
             </form>
           )}
@@ -297,14 +299,14 @@ export function SiteFooter() {
               color: 'rgba(255,255,255,0.35)',
               letterSpacing: '0.02em',
             }}>
-              <span>Registered vacation rental · Vorarlberg, Austria</span>
+              <span>{t('footer.trust.registration')}</span>
               <span>·</span>
-              <a href="#faq" className="no-underline" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                Cancellation policy
+              <a href={`/${lang}/#faq`} className="no-underline" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                {t('footer.trust.cancellation')}
               </a>
               <span>·</span>
-              <a href="/privacy" className="no-underline" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                Privacy & GDPR
+              <a href={`/${lang}/privacy`} className="no-underline" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                {t('footer.trust.privacy')}
               </a>
             </div>
             <p style={{
@@ -314,14 +316,7 @@ export function SiteFooter() {
               margin: 0,
               letterSpacing: '0.02em',
             }}>
-              © 2026 HAUS ALPZEIT · SCHNANN 41, 6574 PETTNEU AM ARLBERG, AUSTRIA ·{' '}
-              <a
-                href="mailto:hello@alpzeit.at"
-                className="no-underline"
-                style={{ color: 'rgba(255,255,255,0.28)' }}
-              >
-                HELLO@ALPZEIT.AT
-              </a>
+              {t('footer.copyright')}
             </p>
           </div>
 

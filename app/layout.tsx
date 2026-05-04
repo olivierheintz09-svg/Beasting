@@ -1,32 +1,36 @@
 import type { Metadata } from 'next'
-import { Source_Serif_4 } from 'next/font/google'
+import { Cinzel, Oswald } from 'next/font/google'
 import './globals.css'
-import { BookingProvider } from '@/components/features/booking-provider'
+import SiteHeader from '@/components/beasting/header'
+import SiteFooter from '@/components/beasting/footer'
 
-const sourceSerif4 = Source_Serif_4({
+const cinzel = Cinzel({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-source-serif',
+  weight: ['400', '700', '900'],
+  variable: '--font-cinzel',
+  display: 'swap',
+})
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-oswald',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Haus Alpzeit — Schnann, Austria',
+  title: 'Beasting · Out of Your Comfort Zone',
   description:
-    'Three apartments in Schnann, Austria. Sleeps 2, 8, or 12. One hour from Innsbruck. One minute from the bus to St. Anton.',
+    'Militair-geleide obstacle challenges voor bedrijven, scholen en teams. 3 tot 24 uur in de buitenlucht.',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sourceSerif4.variable}>
+    <html lang="nl" className={`${cinzel.variable} ${oswald.variable}`}>
       <body>
-        <BookingProvider>
-          <main>{children}</main>
-        </BookingProvider>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
       </body>
     </html>
   )
