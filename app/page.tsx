@@ -1,130 +1,36 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import Icon from '@/components/beasting/icon'
-import Placeholder from '@/components/beasting/placeholder'
-import StatsTicker from '@/components/beasting/home/stats-ticker'
-import TestimonialsSection from '@/components/beasting/home/testimonials-section'
-import CtaBand from '@/components/beasting/cta-band'
+import Faq from '@/components/beasting/faq'
 
-const PROGRAMMES = [
+const EVENTBRITE = 'https://www.eventbrite.nl/o/beasting-82957786833'
+const INSTAGRAM = 'https://www.instagram.com/beasting.nl/'
+
+const FOCUS = [
   {
-    id: '3-6',
-    duration: '3 — 6 UUR',
-    name: 'BLOEDPROEF',
-    pitch: 'Halve dag. Volledige reset. Voor teams die willen voelen wat samenwerken onder druk betekent.',
-    spec: ['8–40 personen', 'Buitenlocaties NL', 'Vanaf €165 p.p.'],
-    icon: 'flame',
-    featured: false,
-    image: '/programma-bloed.png',
+    title: 'EFFECTIEF COMMUNICEREN',
+    body: 'Duidelijke lijnen onder druk. Wanneer plannen sneuvelen, blijken woorden te tellen.',
   },
   {
-    id: '12-24',
-    duration: '12 — 24 UUR',
-    name: 'NACHTRAID',
-    pitch: 'Een etmaal in de modder. Geen telefoon, geen comfort, geen uitvluchten. Voor teams die echt iets willen leren.',
-    spec: ['12–60 personen', 'Veluwe / Brabant', 'Vanaf €420 p.p.'],
-    icon: 'mountain',
-    featured: false,
-    image: '/programma-nacht.png',
+    title: 'LEIDERSCHAP & RESPECT',
+    body: 'Wie stapt naar voren als het moeilijk wordt? Wie bewaart de rust? Uw team ontdekt het zelf.',
   },
   {
-    id: 'bespoke',
-    duration: 'OP MAAT',
-    name: 'BESPOKE COMPANY',
-    pitch: 'Volledig op uw doelstellingen ingericht. Leiderschap, verandering, onboarding — wij vertalen het naar de buitenlucht.',
-    spec: ['20–250 personen', 'Locatie naar wens', 'Op offerte'],
-    icon: 'compass',
-    featured: false,
-    image: '/programma-bespoke.png',
-  },
-  {
-    id: 'murph',
-    duration: '24 MEI 2026',
-    name: 'THE MURPH',
-    pitch: 'De legendarische hero WOD. Olympisch Stadion Amsterdam. Open inschrijving — bedrijfsteams welkom.',
-    spec: ['Solo of team-van-4', 'Olympisch Stadion', 'Limited tickets'],
-    icon: 'target',
-    featured: true,
-    image: '/programma-murph.png',
+    title: 'SAMEN OBSTAKELS OVERWINNEN',
+    body: 'Successen behalen. Leren van fouten. Groeien als team, niet als individu.',
   },
 ]
 
-const INSTRUCTORS = [
-  { name: 'BAS OFFENBERG',  role: 'FOUNDER & HEAD INSTRUCTOR', unit: 'Sportinstructeur · Korps Mariniers (RES)' },
-  { name: 'INSTRUCTEUR 02', role: 'SENIOR INSTRUCTOR',          unit: 'Korps Mariniers · 13 jaar actieve dienst' },
-  { name: 'INSTRUCTEUR 03', role: 'INSTRUCTOR',                 unit: 'Korps Commandotroepen · veteraan' },
-  { name: 'INSTRUCTEUR 04', role: 'MEDIC & SAFETY OFFICER',     unit: 'Defensie Geneeskundige Dienst' },
+const CONTACT_TILES = [
+  { icon: 'phone',     kicker: 'BEL',  value: '+31 (0)6 21 999 148', href: 'tel:+31621999148',    external: false },
+  { icon: 'mail',      kicker: 'MAIL', value: 'info@beasting.nl',    href: 'mailto:info@beasting.nl', external: false },
+  { icon: 'instagram', kicker: 'VOLG', value: '@beasting.nl',        href: INSTAGRAM,             external: true },
 ]
-
-function ProgrammeCard({ p }: { p: typeof PROGRAMMES[0] }) {
-  return (
-    <Link href="/programmas" style={{
-      display: 'flex',
-      flexDirection: 'column',
-      background: p.featured ? 'var(--ink-charcoal)' : 'rgba(10,7,7,0.55)',
-      border: p.featured ? '1.5px solid var(--brand-bone)' : '1px solid var(--line-hairline)',
-      color: 'var(--brand-bone)',
-      textDecoration: 'none',
-      overflow: 'hidden',
-      minHeight: 460,
-    }}>
-      <div style={{ padding: '24px 28px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div className="roman" style={{ font: '700 13px/1 var(--font-titling)', color: p.featured ? 'var(--brand-bone)' : 'var(--brand-bone-dim)', letterSpacing: 'var(--track-widest)' }}>
-          {p.duration}
-        </div>
-        <Icon name={p.icon} size={28} color={p.featured ? 'var(--brand-bone)' : 'var(--brand-bone-dim)'} stroke={1.5} />
-      </div>
-      <div style={{ padding: '16px 28px 24px' }}>
-        <div style={{ font: '900 clamp(40px, 4.5vw, 64px)/0.92 var(--font-display)', color: 'var(--brand-bone)', letterSpacing: '-0.01em' }}>
-          {p.name}
-        </div>
-      </div>
-      <div style={{ padding: '0 28px', flex: 1, display: 'flex', alignItems: 'stretch' }}>
-        <div style={{
-          position: 'relative',
-          width: '100%',
-          aspectRatio: '16/10',
-          minHeight: 140,
-          overflow: 'hidden',
-          border: p.featured ? '1px solid rgba(243,238,229,0.22)' : '1px solid var(--line-hairline)',
-        }}>
-          <Image
-            src={p.image}
-            alt={p.name}
-            fill
-            sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-      </div>
-      <p style={{ padding: '20px 28px 16px', color: p.featured ? 'rgba(243,238,229,0.85)' : 'var(--brand-bone-dim)', font: 'var(--type-body-sm)', margin: 0 }}>
-        {p.pitch}
-      </p>
-      <div style={{
-        padding: '16px 28px 20px',
-        borderTop: '1px solid ' + (p.featured ? 'rgba(243,238,229,0.22)' : 'var(--line-hairline)'),
-        display: 'flex', flexDirection: 'column', gap: 6,
-      }}>
-        {p.spec.map((s, i) => (
-          <div key={i} style={{
-            font: '500 11px/1.4 var(--font-sans)', textTransform: 'uppercase', letterSpacing: 'var(--track-wider)',
-            color: p.featured ? 'var(--brand-bone)' : 'var(--brand-bone-dim)',
-            display: 'flex', justifyContent: 'space-between',
-          }}>
-            <span>{s}</span>
-            {i === 0 && <Icon name="arrow-right" size={14} />}
-          </div>
-        ))}
-      </div>
-    </Link>
-  )
-}
 
 export default function HomePage() {
   return (
-    <div className="page-enter">
+    <div className="page-enter" id="top">
 
-      {/* Hero */}
+      {/* ── SECTION 1 — Hero ─────────────────────────────────────── */}
       <section style={{ position: 'relative', minHeight: '92vh', overflow: 'hidden', background: 'var(--ink-black)' }}>
         <Image
           src="/hero-home.png"
@@ -154,12 +60,12 @@ export default function HomePage() {
               Wij organiseren fysieke en mentale challenges voor bedrijven, scholen en teams. 3 tot 24 uur in de buitenlucht. Geleid door ervaren sportinstructeurs en militairen van Nederlandse Defensie-eenheden.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-              <Link href="/contact" className="btn-stencil btn-stencil--red" style={{ padding: '18px 32px' }}>
-                Plan een intake <Icon name="arrow-right" size={14} />
-              </Link>
-              <Link href="/programmas" className="btn-stencil" style={{ padding: '18px 32px' }}>
-                Programma&apos;s
-              </Link>
+              <a href={EVENTBRITE} target="_blank" rel="noopener noreferrer" className="btn-stencil btn-stencil--red" style={{ padding: '18px 32px' }}>
+                Boek een event <Icon name="arrow-right" size={14} />
+              </a>
+              <a href="#over" className="btn-stencil" style={{ padding: '18px 32px' }}>
+                Meer over ons
+              </a>
             </div>
           </div>
         </div>
@@ -184,81 +90,124 @@ export default function HomePage() {
         `}</style>
       </section>
 
-      {/* Sponsor strip */}
-      <div style={{ background: 'var(--ink-black)', borderTop: '1px solid var(--line-hairline-dark)', borderBottom: '1px solid var(--line-hairline-dark)', padding: '32px 0' }}>
-        <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' }}>
-          <div className="kicker" style={{ flexShrink: 0 }}>VERTROUWD DOOR</div>
-          <div style={{ display: 'flex', gap: 48, alignItems: 'center', flexWrap: 'wrap', flex: 1, justifyContent: 'flex-end' }}>
-            <Image src="/Ontwerp zonder titel-67.png"  alt="Nocco"  width={120} height={32} style={{ height: 32, width: 'auto', objectFit: 'contain', opacity: 0.85 }} />
-            <Image src="/sponsor-zeuz.webp"   alt="Zeuz"   width={120} height={28} style={{ height: 28, width: 'auto', objectFit: 'contain', opacity: 0.85 }} />
-            <Image src="/sponsor-fitaid.png"  alt="FitAid" width={120} height={28} style={{ height: 28, width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.4)', opacity: 0.85 }} />
-            <div className="roman" style={{ font: '700 14px/1 var(--font-titling)', color: 'var(--brand-bone-dim)', letterSpacing: 'var(--track-widest)' }}>+ 22 NL BEDRIJVEN</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Programmes */}
-      <section className="bg-oxblood" style={{ padding: '128px 0' }}>
+      {/* ── SECTION 2 — Over Beasting ────────────────────────────── */}
+      <section id="over" className="bg-oxblood" style={{ padding: '120px 0' }}>
         <div className="wrap">
-          <div className="section-head" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'flex-end', marginBottom: 56, borderBottom: '1px solid var(--line-hairline-dark)', paddingBottom: 32 }}>
-            <div>
-              <div className="kicker" style={{ marginBottom: 16 }}>PROGRAMMA&apos;S · 4 FORMATS</div>
-              <h2 className="display-condensed" style={{ margin: 0 }}>KIES UW<br />WEDSTRIJD</h2>
+          <div className="kicker" style={{ marginBottom: 16 }}>OVER BEASTING</div>
+          <h2 style={{
+            font: '700 clamp(40px, 6vw, 72px)/0.95 var(--font-sans)',
+            textTransform: 'uppercase', letterSpacing: '-0.01em',
+            color: 'var(--brand-bone)', margin: '0 0 56px',
+          }}>OUT OF YOUR COMFORT ZONE.</h2>
+
+          <div className="over-grid" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 64, alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <p style={{ font: 'var(--type-body-lg)', color: 'var(--brand-bone-dim)', margin: 0 }}>
+                Beasting is een fysieke en mentale uitdaging. Je weet niet waar je aan toe bent. Grenzen worden opgezocht en vaak verlegd. Met als resultaat een verbeterde mindset en groei.
+              </p>
+              <p style={{ font: 'var(--type-body-lg)', color: 'var(--brand-bone-dim)', margin: 0 }}>
+                Beasting is voor individuen, sportteams, scholen en bedrijven. Voor sportieve mensen die uitgedaagd, sterker en weerbaarder willen worden. Deelnemers kunnen in het algemeen vijf kilometer ononderbroken hardlopen, hebben een zekere mate van fysieke en mentale belastbaarheid, doorzettingsvermogen en zijn teamspelers.
+              </p>
+              <p style={{ font: 'var(--type-body-lg)', color: 'var(--brand-bone-dim)', margin: 0 }}>
+                De programma&apos;s vinden plaats in de buitenlucht, midden in de natuur. Beastings duren minimaal 3 uur, maar kunnen uitgebreid worden tot 4, 8, 12 of 24 uur. Voorafgaand, tijdens en/of na de Beasting zijn er cateringmogelijkheden. We houden rekening met de fitheid van de deelnemers.
+              </p>
             </div>
-            <Link href="/programmas" className="btn-stencil" style={{ padding: '14px 24px' }}>
-              Alle programma&apos;s <Icon name="arrow-right" size={14} />
-            </Link>
-          </div>
-          <div className="prog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-            {PROGRAMMES.map(p => <ProgrammeCard key={p.id} p={p} />)}
+
+            <div style={{ border: '1px solid var(--line-hairline)', padding: 32, background: 'rgba(58,10,12,0.35)' }}>
+              <div className="kicker" style={{ marginBottom: 16, color: 'var(--brand-bone)' }}>ONS TEAM</div>
+              <p style={{ font: 'var(--type-body)', color: 'var(--brand-bone-dim)', margin: 0 }}>
+                Ervaren sportinstructeurs en militairen die hun sporen hebben verdiend bij speciale eenheden van Defensie. Aangevuld met coaches voor gedrag, groepsdynamiek en reflecties.
+              </p>
+            </div>
           </div>
         </div>
         <style>{`
-          @media (max-width: 1100px) { .prog-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-          @media (max-width: 600px)  { .prog-grid { grid-template-columns: 1fr !important; } .section-head { grid-template-columns: 1fr !important; } }
+          @media (max-width: 880px) { .over-grid { grid-template-columns: 1fr !important; gap: 40px !important; } }
         `}</style>
       </section>
 
-      <StatsTicker />
-
-      {/* Instructors */}
-      <section className="bg-oxblood" style={{ padding: '128px 0' }}>
+      {/* ── SECTION 3 — Voor bedrijven ───────────────────────────── */}
+      <section id="bedrijven" className="bg-ink" style={{ padding: '120px 0' }}>
         <div className="wrap">
-          <div className="section-head" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48, alignItems: 'flex-end', marginBottom: 56, paddingBottom: 32, borderBottom: '1px solid var(--line-hairline)' }}>
-            <div>
-              <div className="kicker" style={{ marginBottom: 16 }}>HET TEAM · MILITAIR-GELEID</div>
-              <h2 className="display-condensed" style={{ margin: 0 }}>UW DAG STAAT<br />IN VERTROUWDE HANDEN</h2>
-            </div>
-            <p style={{ font: 'var(--type-body-lg)', color: 'var(--brand-bone-dim)', marginBottom: 0 }}>
-              Onze instructeurs zijn ervaren sportinstructeurs en militairen van Nederlandse Defensie-eenheden — Korps Mariniers, Commandotroepen, Defensie Geneeskundige Dienst. Hard waar het moet, veilig waar het hoort.
-            </p>
-          </div>
-          <div className="prog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-            {INSTRUCTORS.map(i => (
-              <div key={i.name} style={{ background: 'rgba(58,10,12,0.45)', border: '1px solid var(--line-hairline)' }}>
-                <Placeholder label={"PORTRAIT — " + i.name} ratio="3/4" tone="red" icon="shield" />
-                <div style={{ padding: 24, borderTop: '1px solid var(--line-hairline)' }}>
-                  <div className="roman" style={{ font: '700 11px/1 var(--font-titling)', color: 'var(--brand-bone-dim)', letterSpacing: 'var(--track-widest)', marginBottom: 8 }}>
-                    {i.role}
-                  </div>
-                  <div style={{ font: '900 28px/1 var(--font-display)', color: 'var(--brand-bone)', marginBottom: 12, letterSpacing: '-0.01em' }}>
-                    {i.name}
-                  </div>
-                  <div style={{ font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)' }}>{i.unit}</div>
+          <div className="kicker" style={{ marginBottom: 16 }}>ZAKELIJK · TEAMBUILDING</div>
+          <h2 className="display-condensed" style={{ margin: '0 0 32px' }}>UW TEAM, ECHT GETOETST.</h2>
+          <p style={{ font: 'var(--type-body-lg)', color: 'var(--brand-bone-dim)', maxWidth: 720, marginBottom: 56 }}>
+            Teambuilding, verbinding en vitaliteit worden steeds belangrijker. Voor bedrijven plannen we voorafgaand een intake. Samen bepalen we de doelstelling. Kernwaarden, missie, targets van het bedrijf nemen we mee in de basis.
+          </p>
+
+          <div className="focus-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 56 }}>
+            {FOCUS.map(f => (
+              <div key={f.title} style={{ background: 'transparent', border: '1px solid var(--line-hairline)', padding: 24 }}>
+                <div style={{ font: '700 18px/1.15 var(--font-sans)', textTransform: 'uppercase', letterSpacing: 'var(--track-wide)', color: 'var(--brand-bone)', marginBottom: 12 }}>
+                  {f.title}
                 </div>
+                <p style={{ font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)', margin: 0 }}>
+                  {f.body}
+                </p>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 40, textAlign: 'center' }}>
-            <Link href="/over" className="btn-stencil" style={{ padding: '14px 28px' }}>
-              Over het team <Icon name="arrow-right" size={14} />
-            </Link>
-          </div>
+
+          <a href={EVENTBRITE} target="_blank" rel="noopener noreferrer" className="btn-stencil btn-stencil--red" style={{ padding: '16px 32px' }}>
+            Bekijk beschikbare events <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+        <style>{`
+          @media (max-width: 880px) { .focus-grid { grid-template-columns: 1fr !important; } }
+        `}</style>
+      </section>
+
+      {/* ── SECTION 4 — FAQ ──────────────────────────────────────── */}
+      <section id="faq" className="bg-bone" style={{ padding: '120px 0' }}>
+        <div className="wrap-tight">
+          <div className="kicker" style={{ marginBottom: 16, color: '#6a5a52' }}>VEELGESTELDE VRAGEN</div>
+          <h2 className="display-condensed" style={{ color: 'var(--ink-black)', margin: '0 0 48px' }}>GOED OM TE WETEN.</h2>
+          <Faq />
         </div>
       </section>
 
-      <TestimonialsSection />
-      <CtaBand />
+      {/* ── SECTION 5 — Contact ──────────────────────────────────── */}
+      <section id="contact" className="bg-oxblood" style={{ padding: '120px 0' }}>
+        <div className="wrap" style={{ maxWidth: 600, textAlign: 'center' }}>
+          <div className="kicker" style={{ marginBottom: 16 }}>CONTACT</div>
+          <h2 className="display-condensed" style={{ margin: '0 0 24px' }}>KLAAR VOOR DE VOLGENDE STAP?</h2>
+          <p style={{ font: 'var(--type-body-lg)', color: 'var(--brand-bone-dim)', margin: '0 0 48px' }}>
+            Boek direct een event, of neem contact op voor een vrijblijvend gesprek over een programma op maat.
+          </p>
+
+          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 48 }}>
+            {CONTACT_TILES.map(t => (
+              <a
+                key={t.kicker}
+                href={t.href}
+                {...(t.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 12,
+                  border: '1px solid var(--line-hairline)',
+                  padding: '28px 16px',
+                  textDecoration: 'none',
+                  color: 'var(--brand-bone)',
+                }}
+              >
+                <Icon name={t.icon} size={24} color="var(--brand-bone)" />
+                <span className="kicker" style={{ color: 'var(--brand-bone)' }}>{t.kicker}</span>
+                <span style={{ font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)' }}>{t.value}</span>
+              </a>
+            ))}
+          </div>
+
+          <a href={EVENTBRITE} target="_blank" rel="noopener noreferrer" className="btn-stencil btn-stencil--solid" style={{ padding: '18px 36px' }}>
+            Boek een event op Eventbrite <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+        <style>{`
+          @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr !important; } }
+        `}</style>
+      </section>
+
     </div>
   )
 }

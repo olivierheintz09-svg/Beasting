@@ -1,44 +1,13 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import Icon from './icon'
 
-const COLS = [
-  {
-    h: "PROGRAMMA'S",
-    items: [
-      ["3–6 uur", "/programmas"],
-      ["12–24 uur", "/programmas"],
-      ["Bespoke Company", "/programmas"],
-      ["The Murph", "/programmas"],
-    ],
-  },
-  {
-    h: "BEDRIJVEN",
-    items: [
-      ["Teambuilding", "/bedrijven"],
-      ["Intake-proces", "/bedrijven"],
-      ["Cases", "/bedrijven"],
-      ["Plan een gesprek", "/contact"],
-    ],
-  },
-  {
-    h: "BEASTING",
-    items: [
-      ["Over ons", "/over"],
-      ["Het team", "/over"],
-      ["Missie", "/over"],
-      ["Pers", "#"],
-    ],
-  },
-  {
-    h: "CONTACT",
-    items: [
-      ["Stuur bericht", "/contact"],
-      ["+31 (0)20 555 0143", "#"],
-      ["ops@beasting.nl", "#"],
-      ["Amsterdam, NL", "#"],
-    ],
-  },
+const EVENTBRITE = 'https://www.eventbrite.nl/o/beasting-82957786833'
+const INSTAGRAM = 'https://www.instagram.com/beasting.nl/'
+
+const QUICK_LINKS = [
+  { icon: 'phone',     label: '+31 (0)6 21 999 148', href: 'tel:+31621999148',        external: false },
+  { icon: 'mail',      label: 'info@beasting.nl',     href: 'mailto:info@beasting.nl', external: false },
+  { icon: 'instagram', label: '@beasting.nl',         href: INSTAGRAM,                 external: true },
 ]
 
 export default function SiteFooter() {
@@ -58,52 +27,52 @@ export default function SiteFooter() {
 
         <div className="footer-grid" style={{
           display: 'grid',
-          gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr',
+          gridTemplateColumns: '1.5fr 1fr auto',
           gap: 48,
           marginBottom: 48,
           borderTop: '1px solid var(--line-hairline)',
           paddingTop: 48,
+          alignItems: 'flex-start',
         }}>
+          {/* Left — logo + tagline */}
           <div>
             <Image src="/beasting-logo-white.png" alt="Beasting" width={140} height={36} style={{ height: 36, width: 'auto', marginBottom: 20 }} />
-            <p style={{ font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)', maxWidth: 280, marginBottom: 24 }}>
-              Out of your comfort zone. Militair-geleide challenges voor teams die echt willen weten waar hun grens ligt.
+            <p style={{ font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)', maxWidth: 280, margin: 0 }}>
+              Out of your comfort zone. Amsterdam, NL.
             </p>
-            <div style={{ display: 'flex', gap: 12 }}>
-              {(['instagram', 'linkedin', 'facebook'] as const).map(n => (
-                <Link key={n} href="#" style={{
-                  width: 40, height: 40,
-                  border: '1px solid var(--brand-bone-dim)',
-                  color: 'var(--brand-bone-dim)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  textDecoration: 'none',
-                }}>
-                  <Icon name={n} size={16} />
-                </Link>
-              ))}
-            </div>
           </div>
 
-          {COLS.map(col => (
-            <div key={col.h}>
-              <div style={{
-                font: '500 11px/1 var(--font-sans)',
-                textTransform: 'uppercase',
-                letterSpacing: 'var(--track-widest)',
-                color: 'var(--brand-bone)',
-                marginBottom: 18,
-              }}>{col.h}</div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {col.items.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} style={{ font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)', textDecoration: 'none' }}>
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Center — contact quick-links */}
+          <div>
+            <div style={{
+              font: '500 11px/1 var(--font-sans)',
+              textTransform: 'uppercase',
+              letterSpacing: 'var(--track-widest)',
+              color: 'var(--brand-bone)',
+              marginBottom: 18,
+            }}>CONTACT</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {QUICK_LINKS.map(l => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 10, font: 'var(--type-body-sm)', color: 'var(--brand-bone-dim)', textDecoration: 'none' }}
+                  >
+                    <Icon name={l.icon} size={16} />
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right — CTA */}
+          <div>
+            <a href={EVENTBRITE} target="_blank" rel="noopener noreferrer" className="btn-stencil btn-stencil--red" style={{ padding: '14px 24px' }}>
+              Boek op Eventbrite <Icon name="arrow-right" size={14} />
+            </a>
+          </div>
         </div>
 
         <div style={{
@@ -120,9 +89,9 @@ export default function SiteFooter() {
           </div>
           <div style={{ display: 'flex', gap: 20 }}>
             {['Algemene voorwaarden', 'Privacy', 'Cookies'].map(t => (
-              <Link key={t} href="#" style={{ font: 'var(--type-caption)', color: 'var(--ink-ash)', textTransform: 'uppercase', letterSpacing: 'var(--track-widest)' }}>
+              <a key={t} href="#" style={{ font: 'var(--type-caption)', color: 'var(--ink-ash)', textTransform: 'uppercase', letterSpacing: 'var(--track-widest)' }}>
                 {t}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -130,8 +99,7 @@ export default function SiteFooter() {
 
       <style>{`
         @media (max-width: 880px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
-          .footer-grid > div:first-child { grid-column: 1 / -1; }
+          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
         }
       `}</style>
     </footer>

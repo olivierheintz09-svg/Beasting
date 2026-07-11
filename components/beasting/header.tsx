@@ -1,20 +1,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import Icon from './icon'
 
 const NAV = [
-  { id: 'home',       label: 'Home',         href: '/' },
-  { id: 'bedrijven',  label: 'Bedrijven',    href: '/bedrijven' },
-  { id: 'programmas', label: "Programma's",  href: '/programmas' },
-  { id: 'over',       label: 'Over ons',     href: '/over' },
-  { id: 'contact',    label: 'Contact',      href: '/contact' },
+  { id: 'over',      label: 'Over ons',  href: '#over' },
+  { id: 'bedrijven', label: 'Bedrijven', href: '#bedrijven' },
+  { id: 'contact',   label: 'Contact',   href: '#contact' },
 ]
 
+const EVENTBRITE = 'https://www.eventbrite.nl/o/beasting-82957786833'
+const INSTAGRAM = 'https://www.instagram.com/beasting.nl/'
+
 export default function SiteHeader() {
-  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -24,8 +22,6 @@ export default function SiteHeader() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  useEffect(() => { setOpen(false) }, [pathname])
 
   return (
     <>
@@ -48,7 +44,7 @@ export default function SiteHeader() {
           justifyContent: 'space-between',
           gap: 32,
         }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <a href="#top" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <div
               role="img"
               aria-label="Beasting"
@@ -67,35 +63,53 @@ export default function SiteHeader() {
                 flexShrink: 0,
               }}
             />
-          </Link>
+          </a>
 
           <nav style={{ display: 'flex', gap: 36, alignItems: 'center' }} className="nav-desktop">
-            {NAV.map(it => {
-              const active = it.href === '/' ? pathname === '/' : pathname.startsWith(it.href)
-              return (
-                <Link key={it.id} href={it.href} style={{
-                  font: '500 12px/1 var(--font-sans)',
-                  textTransform: 'uppercase',
-                  letterSpacing: 'var(--track-widest)',
-                  color: active ? 'var(--brand-bone)' : 'var(--brand-bone-dim)',
-                  textDecoration: 'none',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  paddingBottom: 6,
-                  borderBottom: active ? '1.5px solid var(--brand-bone)' : '1.5px solid transparent',
-                  transition: 'color 220ms, border-color 220ms',
-                }}>
-                  {active && <span className="diamond" />}
-                  {it.label}
-                </Link>
-              )
-            })}
+            {NAV.map(it => (
+              <a key={it.id} href={it.href} style={{
+                font: '500 12px/1 var(--font-sans)',
+                textTransform: 'uppercase',
+                letterSpacing: 'var(--track-widest)',
+                color: 'var(--brand-bone-dim)',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                paddingBottom: 6,
+                borderBottom: '1.5px solid transparent',
+                transition: 'color 220ms, border-color 220ms',
+              }}>
+                {it.label}
+              </a>
+            ))}
           </nav>
 
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <Link href="/contact" className="btn-stencil btn-stencil--red nav-cta" style={{ padding: '10px 20px', fontSize: 11 }}>
-              Plan een intake <Icon name="arrow-right" size={14} />
-            </Link>
+            <a
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Beasting op Instagram"
+              className="nav-instagram"
+              style={{
+                color: 'var(--brand-bone-dim)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: 8,
+                transition: 'color 220ms',
+              }}
+            >
+              <Icon name="instagram" size={20} />
+            </a>
+            <a
+              href={EVENTBRITE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-stencil btn-stencil--red nav-cta"
+              style={{ padding: '10px 20px', fontSize: 11 }}
+            >
+              Boek een event <Icon name="arrow-right" size={14} />
+            </a>
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"
@@ -139,14 +153,32 @@ export default function SiteHeader() {
           </div>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
             {NAV.map(it => (
-              <Link key={it.id} href={it.href} style={{
+              <a key={it.id} href={it.href} onClick={() => setOpen(false)} style={{
                 font: '900 36px/1 var(--font-display)',
                 textTransform: 'uppercase',
                 color: 'var(--brand-bone)',
                 textDecoration: 'none',
                 letterSpacing: '0.04em',
-              }}>{it.label}</Link>
+              }}>{it.label}</a>
             ))}
+            <a
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 12,
+                font: '900 36px/1 var(--font-display)',
+                textTransform: 'uppercase',
+                color: 'var(--brand-bone)',
+                textDecoration: 'none',
+                letterSpacing: '0.04em',
+              }}
+            >
+              <Icon name="instagram" size={30} /> Instagram
+            </a>
           </nav>
         </div>
       )}
@@ -155,6 +187,7 @@ export default function SiteHeader() {
         @media (max-width: 880px) {
           .nav-desktop  { display: none !important; }
           .nav-cta      { display: none !important; }
+          .nav-instagram { display: none !important; }
           .nav-mobile-trigger { display: inline-flex !important; }
         }
       `}</style>
