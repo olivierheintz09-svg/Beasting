@@ -15,6 +15,7 @@ const PROGRAMMES = [
     spec: ['8–40 personen', 'Buitenlocaties NL', 'Vanaf €165 p.p.'],
     icon: 'flame',
     featured: false,
+    image: '/programma-bloed.png',
   },
   {
     id: '12-24',
@@ -24,6 +25,7 @@ const PROGRAMMES = [
     spec: ['12–60 personen', 'Veluwe / Brabant', 'Vanaf €420 p.p.'],
     icon: 'mountain',
     featured: false,
+    image: '/programma-nacht.png',
   },
   {
     id: 'bespoke',
@@ -33,6 +35,7 @@ const PROGRAMMES = [
     spec: ['20–250 personen', 'Locatie naar wens', 'Op offerte'],
     icon: 'compass',
     featured: false,
+    image: '/programma-bespoke.png',
   },
   {
     id: 'murph',
@@ -42,6 +45,7 @@ const PROGRAMMES = [
     spec: ['Solo of team-van-4', 'Olympisch Stadion', 'Limited tickets'],
     icon: 'target',
     featured: true,
+    image: '/programma-murph.png',
   },
 ]
 
@@ -76,7 +80,22 @@ function ProgrammeCard({ p }: { p: typeof PROGRAMMES[0] }) {
         </div>
       </div>
       <div style={{ padding: '0 28px', flex: 1, display: 'flex', alignItems: 'stretch' }}>
-        <Placeholder label={p.name + ' — moodboard'} ratio="16/10" tone={p.featured ? 'red' : 'dark'} icon={p.icon} style={{ width: '100%', minHeight: 140 }} />
+        <div style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '16/10',
+          minHeight: 140,
+          overflow: 'hidden',
+          border: p.featured ? '1px solid rgba(243,238,229,0.22)' : '1px solid var(--line-hairline)',
+        }}>
+          <Image
+            src={p.image}
+            alt={p.name}
+            fill
+            sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
       </div>
       <p style={{ padding: '20px 28px 16px', color: p.featured ? 'rgba(243,238,229,0.85)' : 'var(--brand-bone-dim)', font: 'var(--type-body-sm)', margin: 0 }}>
         {p.pitch}

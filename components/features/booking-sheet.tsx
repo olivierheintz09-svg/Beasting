@@ -333,7 +333,7 @@ type ResultsProps = {
 }
 
 function ResultsStep({ arrive, depart, guests, matches, onBack, onSelect }: ResultsProps) {
-  const { t } = useLocale()
+  const { t, lang } = useLocale()
   const guestLabel = guests === 1 ? t('booking.guestSingular') : t('booking.guestPlural')
 
   return (
@@ -361,7 +361,7 @@ function ResultsStep({ arrive, depart, guests, matches, onBack, onSelect }: Resu
                 {t('booking.sleeps', { n: a.sleeps })} · {a.area} m²
               </div>
             </div>
-            <div className="type-caption-bold">€{a.pricePerNight}/nt</div>
+            <div className="type-caption-bold">{lang === 'de' ? 'Preis auf Anfrage' : 'Price on request'}</div>
           </button>
         ))}
         {matches.length === 0 && (
@@ -392,13 +392,13 @@ function ConfirmStep({
   depart: string
   onClose: () => void
 }) {
-  const { t } = useLocale()
+  const { t, lang } = useLocale()
 
   return (
     <div style={{ padding: '28px 32px 32px', textAlign: 'center' }}>
       <div className="type-tile" style={{ marginTop: 8, marginBottom: 6 }}>{t('booking.held')}</div>
       <p className="type-body" style={{ color: 'rgba(0,0,0,0.80)', marginBottom: 20 }}>
-        {pick.name} · {arrive} → {depart} · €{pick.pricePerNight}/night.
+        {pick.name} · {arrive} → {depart}.
         <br />
         {t('booking.emailConfirm')}
       </p>

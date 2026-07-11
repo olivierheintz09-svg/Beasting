@@ -2,16 +2,15 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import Icon from '../icon'
 
 const ALL = [
-  { id: 'bloed',      name: 'BLOEDPROEF',      durCat: 'kort',  duration: '3 — 6 UUR',   type: 'Team',       size: '8–40',             price: 'Vanaf €165 p.p.', loc: 'NL — diverse',     icon: 'flame',    intensity: 3, image: '/programma-bloed.png' },
-  { id: 'nacht',      name: 'NACHTRAID',        durCat: 'lang',  duration: '12 — 24 UUR', type: 'Team',       size: '12–60',            price: 'Vanaf €420 p.p.', loc: 'Veluwe / Brabant', icon: 'mountain', intensity: 5, image: '/programma-nacht.png' },
-  { id: 'bespoke',    name: 'BESPOKE COMPANY',  durCat: 'maat',  duration: 'OP MAAT',     type: 'Bedrijven',  size: '20–250',           price: 'Op offerte',      loc: 'Naar wens',        icon: 'compass',  intensity: 4, image: '/programma-bespoke.png' },
-  { id: 'murph',      name: 'THE MURPH',        durCat: 'event', duration: '24 MEI 2026', type: 'Event',      size: 'Solo / 4',         price: '€89 — €169',     loc: 'Olympisch Stadion', icon: 'target',   intensity: 5, image: '/programma-murph.png', featured: true },
-  { id: 'school',     name: 'CADET DAY',        durCat: 'kort',  duration: '4 UUR',       type: 'Scholen',    size: '20–80',            price: 'Vanaf €45 p.p.', loc: 'Schoolterrein',    icon: 'shield',   intensity: 3, image: null },
-  { id: 'individueel',name: 'OPEN BEAST',       durCat: 'kort',  duration: '5 UUR',       type: 'Individueel',size: 'Open inschrijving',price: '€95',            loc: 'Diverse',          icon: 'flame',    intensity: 4, image: null },
+  { id: 'bloed',      name: 'BLOEDPROEF',      durCat: 'kort',  duration: '3 — 6 UUR',   type: 'Team',       size: '8–40',             price: 'Vanaf €165 p.p.', loc: 'NL — diverse',     icon: 'flame',    intensity: 3 },
+  { id: 'nacht',      name: 'NACHTRAID',        durCat: 'lang',  duration: '12 — 24 UUR', type: 'Team',       size: '12–60',            price: 'Vanaf €420 p.p.', loc: 'Veluwe / Brabant', icon: 'mountain', intensity: 5 },
+  { id: 'bespoke',    name: 'BESPOKE COMPANY',  durCat: 'maat',  duration: 'OP MAAT',     type: 'Bedrijven',  size: '20–250',           price: 'Op offerte',      loc: 'Naar wens',        icon: 'compass',  intensity: 4 },
+  { id: 'murph',      name: 'THE MURPH',        durCat: 'event', duration: '24 MEI 2026', type: 'Event',      size: 'Solo / 4',         price: '€89 — €169',     loc: 'Olympisch Stadion', icon: 'target',   intensity: 5, featured: true },
+  { id: 'school',     name: 'CADET DAY',        durCat: 'kort',  duration: '4 UUR',       type: 'Scholen',    size: '20–80',            price: 'Vanaf €45 p.p.', loc: 'Schoolterrein',    icon: 'shield',   intensity: 3 },
+  { id: 'individueel',name: 'OPEN BEAST',       durCat: 'kort',  duration: '5 UUR',       type: 'Individueel',size: 'Open inschrijving',price: '€95',            loc: 'Diverse',          icon: 'flame',    intensity: 4 },
 ]
 
 const DUR_FILTERS  = [{ id: 'all', l: 'Alles' }, { id: 'kort', l: '< 6 uur' }, { id: 'lang', l: '12-24 uur' }, { id: 'maat', l: 'Op maat' }, { id: 'event', l: 'Events' }]
@@ -83,25 +82,7 @@ export default function ProgrammaFilterList() {
           transition: 'background 220ms',
         }}>
           <div style={{ paddingLeft: 16 }}>
-            {p.image ? (
-              <div style={{
-                width: 96,
-                height: 96,
-                position: 'relative',
-                overflow: 'hidden',
-                border: '1px solid var(--line-hairline)',
-              }}>
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  fill
-                  sizes="96px"
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-            ) : (
-              <Icon name={p.icon} size={48} color={p.featured ? 'var(--brand-bone)' : 'var(--brand-bone-dim)'} stroke={1} />
-            )}
+            <Icon name={p.icon} size={48} color={p.featured ? 'var(--brand-bone)' : 'var(--brand-bone-dim)'} stroke={1} />
           </div>
           <div>
             <div className="roman" style={{ font: '700 11px/1 var(--font-titling)', color: 'var(--brand-bone-dim)', letterSpacing: 'var(--track-widest)', marginBottom: 8 }}>

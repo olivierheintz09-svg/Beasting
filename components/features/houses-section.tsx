@@ -81,7 +81,7 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
             color: '#fff',
             letterSpacing: '0.02em',
           }}>
-            {t('houses.fromPrice', { price: pricePerNight })}
+            {t('houses.fromPrice')}
           </span>
         </div>
       </div>
@@ -120,7 +120,7 @@ function HouseCard({ apartment, hovered, setHovered, tall = false }: CardProps) 
           color: 'rgba(0,0,0,0.50)',
           margin: '5px 0 0',
         }}>
-          {t('houses.fromPrice', { price: pricePerNight })}
+          {t('houses.fromPrice')}
           {' · '}
           {t('houses.inclNote')}
         </p>

@@ -55,7 +55,7 @@
     "sleeps": "Sleeps {{n}}",
     "bedrooms": "{{n}} bedrooms",
     "bedroom": "{{n}} bedroom",
-    "fromPrice": "From €{{price}} / night",
+    "fromPrice": "Price on request",
     "inclNote": "Cleaning, linen & tourist tax included",
     "viewAlt": "View {{name}}"
   },
@@ -168,7 +168,7 @@
       "cancellation": "Cancellation policy",
       "privacy": "Privacy & GDPR"
     },
-    "copyright": "© 2026 HAUS ALPZEIT · SCHNANN 41, 6574 PETTNEU AM ARLBERG, AUSTRIA · HELLO@ALPZEIT.AT"
+    "copyright": "© 2026 HAUS ALPZEIT · SCHNANN 48, 6574 PETTNEU AM ARLBERG, AUSTRIA · HELLO@ALPZEIT.AT"
   },
   "booking": {
     "title": "Check availability",
@@ -232,7 +232,7 @@
     "specsBeds": "{{n}} bedrooms",
     "specsBed": "{{n}} bedroom",
     "specsSleeps": "Sleeps {{n}}",
-    "specsPrice": "From €{{price}} / night"
+    "specsPrice": "Price on request"
   },
   "stickyCta": {
     "checkAvailability": "Check availability"

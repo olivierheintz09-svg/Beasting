@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useBooking } from './booking-provider'
 import { useLocale } from '@/lib/locale-context'
-import { formatPrice } from '@/lib/i18n'
+
 import type { Apartment } from '@/types'
 
 const inputRowStyle: React.CSSProperties = {
@@ -62,10 +62,7 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
             color: '#1a1a1a',
             letterSpacing: '-0.02em',
           }}>
-            {formatPrice(apartment.pricePerNight, lang)}
-          </span>
-          <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'rgba(0,0,0,0.48)' }}>
-            {lang === 'de' ? '/ Nacht' : '/ night'}
+            {lang === 'de' ? 'Preis auf Anfrage' : 'Price on request'}
           </span>
         </div>
 
@@ -195,10 +192,7 @@ export function ApartmentPageSidebar({ apartment }: { apartment: Apartment }) {
             {apartment.name}
           </p>
           <p style={{ fontFamily: 'var(--font-sans)', fontSize: 15, fontWeight: 600, color: '#1a1a1a', margin: 0 }}>
-            {formatPrice(apartment.pricePerNight, lang)}
-            <span style={{ fontWeight: 400, fontSize: 13, color: 'rgba(0,0,0,0.48)' }}>
-              {' '}{lang === 'de' ? '/ Nacht' : '/ night'}
-            </span>
+            {lang === 'de' ? 'Preis auf Anfrage' : 'Price on request'}
           </p>
         </div>
         <button
