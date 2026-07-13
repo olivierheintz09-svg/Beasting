@@ -88,8 +88,12 @@ export default function SiteFooter() {
             © 2026 Beasting B.V. · KvK 88231104 · Amsterdam
           </div>
           <div style={{ display: 'flex', gap: 20 }}>
-            {['Algemene voorwaarden', 'Privacy', 'Cookies'].map(t => (
-              <a key={t} href="#" style={{ font: 'var(--type-caption)', color: 'var(--ink-ash)', textTransform: 'uppercase', letterSpacing: 'var(--track-widest)' }}>
+            {[
+              ['Algemene voorwaarden', '/algemene-voorwaarden'],
+              ['Privacy', '#'],
+              ['Cookies', '#'],
+            ].map(([t, href]) => (
+              <a key={t} href={href} style={{ font: 'var(--type-caption)', color: 'var(--ink-ash)', textTransform: 'uppercase', letterSpacing: 'var(--track-widest)' }}>
                 {t}
               </a>
             ))}
